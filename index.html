@@ -4,1277 +4,453 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Convocatoria N.º 3 – 2026 | Revista Explorando Arte y Cultura de Latinoamérica</title>
-  <meta name="description" content="Convocatoria Internacional N.º 3 – 2026 de la Revista Explorando Arte y Cultura de Latinoamérica. Eje temático: Horizontes que nos unen. Recepción: 21 de septiembre al 21 de octubre de 2026.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-black: #000000;
-      --bg-dark: #000000;
-      --bg-card: #000000;
-      --bg-card-hover: #000000;
-      --primary: #d4af37;
-      --primary-light: #f4d03f;
-      --primary-bright: #ffd966;
-      --accent: #e74c3c;
-      --accent-light: #ff6b5b;
-      --text-light: #f5f5f5;
-      --text-muted: #b0b0b0;
-      --text-dim: #888888;
-      --border: #1a1a1a;
-      --border-light: #2a2a2a;
-      --border-gold: rgba(212, 175, 55, 0.3);
-      --shadow: 0 4px 20px rgba(0,0,0,0.8);
-      --radius: 10px;
-      --font-base: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      --bg-black: #000; --primary: #d4af37; --primary-light: #f4d03f; --primary-bright: #ffd966;
+      --accent: #e74c3c; --accent-light: #ff6b5b; --text-light: #f5f5f5; --text-muted: #b0b0b0;
+      --border-gold: rgba(212, 175, 55, 0.3); --shadow: 0 4px 20px rgba(0,0,0,0.8);
+      --radius: 10px; --font-base: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       --font-display: 'Cinzel', serif;
     }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: #000; }
+    body { font-family: var(--font-base); color: var(--text-light); background: #000; line-height: 1.25; font-size: 16px; }
+
+    #flags { background: #000; border-bottom: 3px solid #fff; padding: 15px 0; text-align: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 0 20px rgba(255,255,255,0.2); width: 100%; }
+    #flags-container { display: inline-flex; gap: 25px; justify-content: center; align-items: center; }
+    #flags button { background: transparent; border: none; cursor: pointer; padding: 8px; border-radius: 8px; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; min-width: 70px; }
+    #flags button:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+    #flags button.active { background: rgba(255,255,255,0.2); box-shadow: 0 0 15px rgba(255,255,255,0.3); }
+    #flags .flag-label { color: white; font-size: 11px; margin-top: 5px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+    #flags img { width: 36px; height: 27px; border-radius: 4px; border: 1px solid #666; transition: all 0.3s ease; }
+    #flags button:hover img { transform: scale(1.1); border-color: #fff; }
+    #flags button.active img { border-color: #fff; box-shadow: 0 0 10px rgba(255,255,255,0.5); }
+
+    @keyframes goldShine { 0%,100% { background-position: 0% 50%; box-shadow: 0 0 6px rgba(212,175,55,0.25), 0 0 12px rgba(212,175,55,0.15); } 50% { background-position: 100% 50%; box-shadow: 0 0 10px rgba(212,175,55,0.45), 0 0 20px rgba(212,175,55,0.25); } }
+    @keyframes logoGlow { 0%,100% { filter: drop-shadow(0 0 4px rgba(212,175,55,0.3)) drop-shadow(0 0 10px rgba(212,175,55,0.15)); } 50% { filter: drop-shadow(0 0 7px rgba(212,175,55,0.5)) drop-shadow(0 0 16px rgba(212,175,55,0.25)); } }
+    @keyframes logoGlowSoft { 0%,100% { filter: drop-shadow(0 0 3px rgba(212,175,55,0.3)) drop-shadow(0 0 8px rgba(212,175,55,0.15)); } 50% { filter: drop-shadow(0 0 6px rgba(212,175,55,0.5)) drop-shadow(0 0 14px rgba(212,175,55,0.25)); } }
+    @keyframes themeGlow { 0%,100% { text-shadow: 0 0 6px rgba(212,175,55,0.5), 0 0 14px rgba(212,175,55,0.25); } 50% { text-shadow: 0 0 10px rgba(212,175,55,0.75), 0 0 22px rgba(212,175,55,0.4), 0 0 35px rgba(212,175,55,0.2); } }
+    @keyframes goldShineText { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+
+    header { background: #000; color: #fff; padding: 3rem 1rem 2.5rem; text-align: center; position: relative; overflow: hidden; border-bottom: 1px solid var(--border-gold); box-shadow: 0 1px 10px rgba(212,175,55,0.08); line-height: 1; }
+    header .container { position: relative; z-index: 1; line-height: 1; }
+    .header-logo { display: block; margin: 0 auto 1rem; max-width: 420px; width: 100%; height: auto; animation: logoGlow 5s ease-in-out infinite; transition: transform 0.3s; }
+    .header-logo:hover { transform: scale(1.02); }
+    header .subtitle { font-size: 1.05rem; font-weight: 300; color: var(--text-muted); margin: 0 0 0.2rem 0; line-height: 1.05; }
+    header .issn { display: inline-block; background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.35); color: var(--primary-light); padding: 0.3rem 1.1rem; border-radius: 20px; font-size: 0.85rem; letter-spacing: 1px; margin: 0.3rem 0 0 0; line-height: 1; text-shadow: 0 0 4px rgba(212,175,55,0.35); }
+    header .theme { font-family: var(--font-display); font-size: 2.2rem; font-weight: 600; margin: 0.7rem 0 0.3rem; color: var(--primary-light); letter-spacing: 3px; line-height: 1.05; text-transform: uppercase; background: linear-gradient(120deg, #b8941f 0%, #d4af37 20%, #f4d03f 40%, #ffd966 50%, #f4d03f 60%, #d4af37 80%, #b8941f 100%); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: themeGlow 5s ease-in-out infinite, goldShineText 8s ease-in-out infinite; filter: drop-shadow(0 0 8px rgba(212,175,55,0.5)); }
+    header .theme::before, header .theme::after { content: '·'; color: var(--primary); margin: 0 0.8rem; font-size: 2.4rem; vertical-align: middle; -webkit-text-fill-color: var(--primary); filter: drop-shadow(0 0 6px rgba(212,175,55,0.6)); }
+    .btn-oficial { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 0.8rem; background: rgba(212,175,55,0.08); border: 1px solid var(--primary); color: var(--primary-light); padding: 0.55rem 1.3rem; border-radius: 30px; font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: all 0.3s; line-height: 1.05; box-shadow: 0 0 6px rgba(212,175,55,0.15), 0 0 12px rgba(212,175,55,0.08); }
+    .btn-oficial:hover { background: var(--primary); color: #000; text-decoration: none; transform: translateY(-2px); box-shadow: 0 0 12px rgba(212,175,55,0.5), 0 0 25px rgba(212,175,55,0.25); }
+
+    .nav-sticky { background: #000; border-bottom: 1px solid var(--border-gold); padding: 0.6rem 1rem; position: sticky; top: 90px; z-index: 100; box-shadow: 0 1px 10px rgba(212,175,55,0.08); }
+    .nav-sticky ul { display: flex; flex-wrap: wrap; gap: 0.3rem 1.2rem; list-style: none; justify-content: center; max-width: 1100px; margin: 0 auto; font-size: 0.85rem; line-height: 1.2; }
+    .nav-sticky a { color: var(--text-muted); text-decoration: none; font-weight: 500; padding: 0.2rem 0; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; line-height: 1.2; }
+    .nav-sticky a:hover { color: var(--primary-light); border-bottom-color: var(--primary); text-shadow: 0 0 5px rgba(212,175,55,0.5); }
+    .nav-sticky a.nav-oficial { color: var(--primary); font-weight: 700; text-shadow: 0 0 4px rgba(212,175,55,0.35); }
+    .nav-sticky a.nav-oficial:hover { color: var(--primary-light); text-shadow: 0 0 8px rgba(212,175,55,0.6); }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.2rem; }
+    main { padding: 2rem 0 2.5rem; background: #000; }
+    section { background: #000; border: 1px solid var(--border-gold); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.5rem 1.8rem; margin-bottom: 1.2rem; transition: border-color 0.3s, box-shadow 0.3s; }
+    section:hover { border-color: var(--primary); box-shadow: var(--shadow), 0 0 12px rgba(212,175,55,0.1); }
+    section h2 { font-size: 1.35rem; color: var(--primary); margin-bottom: 0.7rem; padding-bottom: 0.4rem; border-bottom: 2px solid var(--accent); display: inline-block; letter-spacing: 0.3px; line-height: 1.2; text-shadow: 0 0 5px rgba(212,175,55,0.3); }
+    section h3 { font-size: 1.1rem; color: var(--primary-light); margin: 0.9rem 0 0.4rem; line-height: 1.2; text-shadow: 0 0 4px rgba(212,175,55,0.25); }
+    p { margin-bottom: 0.5rem; color: var(--text-light); line-height: 1.25; }
+    ul, ol { margin: 0.4rem 0 0.6rem 1.5rem; color: var(--text-light); line-height: 1.25; }
+    li { margin-bottom: 0.15rem; line-height: 1.25; }
+    strong { color: #fff; }
+    a { color: var(--primary-light); text-decoration: none; transition: color 0.2s, text-shadow 0.2s; }
+    a:hover { color: var(--primary-bright); text-decoration: underline; text-shadow: 0 0 4px rgba(212,175,55,0.4); }
+    code { background: #000; color: var(--primary); padding: 0.15rem 0.5rem; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 0.9rem; border: 1px solid var(--border-gold); line-height: 1.2; text-shadow: 0 0 3px rgba(212,175,55,0.3); }
+    em { color: var(--text-muted); }
+
+    .highlight-box { background: rgba(212,175,55,0.05); border-left: 4px solid var(--primary); padding: 0.8rem 1rem; border-radius: 0 8px 8px 0; margin: 0.7rem 0; font-size: 0.95rem; color: var(--text-light); line-height: 1.25; box-shadow: 0 0 8px rgba(212,175,55,0.08); }
+    .warning-box { background: rgba(231,76,60,0.05); border-left: 4px solid var(--accent); padding: 0.8rem 1rem; border-radius: 0 8px 8px 0; margin: 0.7rem 0; font-size: 0.95rem; color: var(--text-light); line-height: 1.25; box-shadow: 0 0 8px rgba(231,76,60,0.08); }
+    .warning-box strong { color: var(--accent-light); }
+    .info-box { background: rgba(39,174,96,0.05); border-left: 4px solid #27ae60; padding: 0.8rem 1rem; border-radius: 0 8px 8px 0; margin: 0.7rem 0; font-size: 0.95rem; color: var(--text-light); line-height: 1.25; box-shadow: 0 0 8px rgba(39,174,96,0.08); }
+
+    .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 0.8rem; }
+    .category-card { background: #000; border-radius: 8px; padding: 1.1rem; border: 1px solid var(--border-gold); transition: all 0.3s; line-height: 1.25; }
+    .category-card:hover { transform: translateY(-3px); border-color: var(--primary); box-shadow: 0 0 12px rgba(212,175,55,0.15); }
+    .category-card h3 { margin-top: 0; font-size: 1.05rem; color: var(--primary); border-bottom: 1px solid var(--border-gold); padding-bottom: 0.4rem; margin-bottom: 0.6rem; line-height: 1.2; text-shadow: 0 0 4px rgba(212,175,55,0.3); }
+    .category-card ul { margin-left: 1rem; font-size: 0.92rem; color: var(--text-light); line-height: 1.25; }
+
+    .table-responsive { overflow-x: auto; margin: 0.8rem 0; border-radius: 8px; border: 1px solid var(--border-gold); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.92rem; background: #000; line-height: 1.2; }
+    th, td { padding: 0.6rem 0.9rem; text-align: left; border-bottom: 1px solid var(--border-gold); color: var(--text-light); line-height: 1.2; background: #000; }
+    th { color: var(--primary); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.8px; border-bottom: 2px solid var(--primary); text-shadow: 0 0 4px rgba(212,175,55,0.3); }
+    tr:hover { background: rgba(212,175,55,0.03); }
+
+    .btn { display: inline-block; background: var(--accent); color: #fff; padding: 0.65rem 1.4rem; border-radius: 6px; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: all 0.25s; border: none; cursor: pointer; margin: 0.3rem 0.3rem 0.3rem 0; line-height: 1.2; }
+    .btn:hover { background: var(--accent-light); color: #fff; text-decoration: none; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(231,76,60,0.3); }
+    .btn-download { background: linear-gradient(110deg, #b8941f 0%, #d4af37 20%, #f4d03f 40%, #ffd966 50%, #f4d03f 60%, #d4af37 80%, #b8941f 100%); background-size: 250% 100%; color: #000; display: inline-flex; align-items: center; gap: 0.6rem; font-weight: 800; border: 1px solid #d4af37; animation: goldShine 5s ease-in-out infinite; }
+    .btn-download:hover { color: #000; transform: translateY(-2px); box-shadow: 0 0 12px rgba(212,175,55,0.5), 0 0 25px rgba(212,175,55,0.25); }
+
+    .schedule-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.9rem; margin-top: 0.8rem; }
+    .schedule-item { background: #000; border-radius: 8px; padding: 1rem 0.9rem; text-align: center; border: 1px solid var(--border-gold); border-top: 2px solid var(--primary); transition: all 0.3s; line-height: 1.2; }
+    .schedule-item:hover { border-top-color: var(--primary-bright); border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 0 10px rgba(212,175,55,0.15); }
+    .schedule-item .phase { font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.8px; color: var(--primary); margin-bottom: 0.4rem; line-height: 1.2; text-shadow: 0 0 4px rgba(212,175,55,0.3); }
+    .schedule-item .date { font-size: 0.98rem; color: #fff; font-weight: 500; line-height: 1.2; }
+
+    .flyer-block { text-align: center; margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid var(--border-gold); }
+    .flyer-block img { max-width: 100%; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 0 12px rgba(212,175,55,0.15), 0 8px 30px rgba(0,0,0,0.8); border: 1px solid var(--border-gold); display: block; margin: 0 auto; }
+
+    .institutional-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; align-items: center; justify-items: center; margin-top: 0.8rem; }
+    .logo-box { text-align: center; padding: 1rem; background: #000; border-radius: 8px; border: 1px solid var(--border-gold); width: 100%; transition: all 0.3s; text-decoration: none; display: block; color: inherit; }
+    .logo-box:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 0 12px rgba(212,175,55,0.15); text-decoration: none; color: inherit; }
+    .logo-box img { max-width: 180px; width: 100%; height: auto; display: block; margin: 0 auto 0.6rem; animation: logoGlowSoft 5s ease-in-out infinite; transition: transform 0.3s; }
+    .logo-box:hover img { transform: scale(1.03); }
+    .logo-box .logo-caption { font-size: 0.85rem; color: var(--text-muted); line-height: 1.3; }
+    .logo-box .logo-caption strong { display: block; color: var(--primary); font-size: 0.95rem; margin-bottom: 0.2rem; text-shadow: 0 0 4px rgba(212,175,55,0.3); }
+    .logo-box .logo-caption .logo-cta { display: inline-block; margin-top: 0.5rem; color: var(--primary-light); font-size: 0.82rem; font-weight: 600; border-bottom: 1px dashed var(--primary-light); padding-bottom: 1px; }
+
+    .official-cta { text-align: center; background: rgba(212,175,55,0.04); border: 1px solid var(--primary); border-radius: 8px; padding: 1.2rem 1rem; margin-top: 1rem; box-shadow: 0 0 10px rgba(212,175,55,0.08); }
+    .official-cta p { margin-bottom: 0.8rem; color: var(--text-light); font-size: 0.95rem; }
+
+    footer { background: #000; color: var(--text-muted); text-align: center; padding: 2rem 1rem; font-size: 0.9rem; border-top: 1px solid var(--primary); line-height: 1.25; box-shadow: 0 -1px 10px rgba(212,175,55,0.08); }
+    footer a { color: var(--primary); }
+    footer a:hover { color: var(--primary-bright); text-shadow: 0 0 5px rgba(212,175,55,0.5); }
+    footer .footer-logo { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.3rem; color: var(--primary); line-height: 1.2; text-shadow: 0 0 5px rgba(212,175,55,0.35); }
+    footer .footer-sub { opacity: 0.7; font-size: 0.85rem; line-height: 1.2; }
+    footer .footer-links { display: flex; flex-wrap: wrap; gap: 0.6rem 1.5rem; justify-content: center; margin: 1.2rem 0 0.8rem; font-size: 0.85rem; }
+    footer .footer-links a { color: var(--primary); font-weight: 600; transition: color 0.2s, text-shadow 0.2s; }
+    footer .footer-links a:hover { color: var(--primary-bright); text-decoration: underline; text-shadow: 0 0 5px rgba(212,175,55,0.5); }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    .floating-oficial { position: fixed; bottom: 20px; right: 20px; z-index: 200; background: linear-gradient(110deg, #b8941f 0%, #d4af37 20%, #f4d03f 40%, #ffd966 50%, #f4d03f 60%, #d4af37 80%, #b8941f 100%); background-size: 250% 100%; color: #000; padding: 0.7rem 1.1rem; border-radius: 30px; font-weight: 800; font-size: 0.85rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: all 0.3s; line-height: 1.2; border: 1px solid #d4af37; animation: goldShine 5s ease-in-out infinite; }
+    .floating-oficial:hover { color: #000; text-decoration: none; transform: translateY(-3px); box-shadow: 0 0 12px rgba(212,175,55,0.5), 0 0 25px rgba(212,175,55,0.25); }
 
-    html {
-      scroll-behavior: smooth;
-      background: #000000;
-    }
-
-    body {
-      font-family: var(--font-base);
-      color: var(--text-light);
-      background: #000000;
-      line-height: 1.25;
-      font-size: 16px;
-    }
-
-    /* ===== ANIMACIONES DORADAS SUAVES ===== */
-    @keyframes goldShine {
-      0%, 100% {
-        background-position: 0% 50%;
-        box-shadow:
-          0 0 6px rgba(212, 175, 55, 0.25),
-          0 0 12px rgba(212, 175, 55, 0.15);
-      }
-      50% {
-        background-position: 100% 50%;
-        box-shadow:
-          0 0 10px rgba(212, 175, 55, 0.45),
-          0 0 20px rgba(212, 175, 55, 0.25);
-      }
-    }
-
-    @keyframes logoGlow {
-      0%, 100% {
-        filter:
-          drop-shadow(0 0 4px rgba(212, 175, 55, 0.3))
-          drop-shadow(0 0 10px rgba(212, 175, 55, 0.15));
-      }
-      50% {
-        filter:
-          drop-shadow(0 0 7px rgba(212, 175, 55, 0.5))
-          drop-shadow(0 0 16px rgba(212, 175, 55, 0.25));
-      }
-    }
-
-    @keyframes logoGlowSoft {
-      0%, 100% {
-        filter:
-          drop-shadow(0 0 3px rgba(212, 175, 55, 0.3))
-          drop-shadow(0 0 8px rgba(212, 175, 55, 0.15));
-      }
-      50% {
-        filter:
-          drop-shadow(0 0 6px rgba(212, 175, 55, 0.5))
-          drop-shadow(0 0 14px rgba(212, 175, 55, 0.25));
-      }
-    }
-
-    @keyframes themeGlow {
-      0%, 100% {
-        text-shadow:
-          0 0 6px rgba(212, 175, 55, 0.5),
-          0 0 14px rgba(212, 175, 55, 0.25);
-      }
-      50% {
-        text-shadow:
-          0 0 10px rgba(212, 175, 55, 0.75),
-          0 0 22px rgba(212, 175, 55, 0.4),
-          0 0 35px rgba(212, 175, 55, 0.2);
-      }
-    }
-
-    /* ===== HEADER (INTERLINEADO MÍNIMO) ===== */
-    header {
-      background: #000000;
-      color: #fff;
-      padding: 3rem 1rem 2.5rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      border-bottom: 1px solid var(--border-gold);
-      box-shadow: 0 1px 10px rgba(212, 175, 55, 0.08);
-      line-height: 1;
-    }
-
-    header .container {
-      position: relative;
-      z-index: 1;
-      line-height: 1;
-    }
-
-    /* ===== LOGO GRANDE DE LA REVISTA (BRILLO SUAVE) ===== */
-    .header-logo {
-      display: block;
-      margin: 0 auto 1rem;
-      max-width: 420px;
-      width: 100%;
-      height: auto;
-      animation: logoGlow 5s ease-in-out infinite;
-      transition: transform 0.3s;
-      line-height: 1;
-    }
-
-    .header-logo:hover {
-      transform: scale(1.02);
-    }
-
-    header .subtitle {
-      font-size: 1.05rem;
-      font-weight: 300;
-      color: var(--text-muted);
-      margin: 0 0 0.2rem 0;
-      line-height: 1.05;
-    }
-
-    header .issn {
-      display: inline-block;
-      background: rgba(212, 175, 55, 0.08);
-      border: 1px solid rgba(212, 175, 55, 0.35);
-      color: var(--primary-light);
-      padding: 0.3rem 1.1rem;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      letter-spacing: 1px;
-      margin: 0.3rem 0 0 0;
-      line-height: 1;
-      text-shadow: 0 0 4px rgba(212, 175, 55, 0.35);
-    }
-
-    /* ===== TEMA CON FUENTE ELEGANTE CINZEL ===== */
-    header .theme {
-      font-family: var(--font-display);
-      font-size: 2.2rem;
-      font-weight: 600;
-      margin: 0.7rem 0 0.3rem;
-      color: var(--primary-light);
-      letter-spacing: 3px;
-      line-height: 1.05;
-      text-transform: uppercase;
-      background: linear-gradient(
-        120deg,
-        #b8941f 0%,
-        #d4af37 20%,
-        #f4d03f 40%,
-        #ffd966 50%,
-        #f4d03f 60%,
-        #d4af37 80%,
-        #b8941f 100%
-      );
-      background-size: 200% 100%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: themeGlow 5s ease-in-out infinite, goldShineText 8s ease-in-out infinite;
-      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.5));
-    }
-
-    @keyframes goldShineText {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-
-    header .theme::before,
-    header .theme::after {
-      content: '·';
-      color: var(--primary);
-      margin: 0 0.8rem;
-      font-size: 2.4rem;
-      vertical-align: middle;
-      -webkit-text-fill-color: var(--primary);
-      filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.6));
-    }
-
-    /* ===== BOTÓN PÁGINA OFICIAL (HEADER) ===== */
-    .btn-oficial {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-top: 0.8rem;
-      background: rgba(212, 175, 55, 0.08);
-      border: 1px solid var(--primary);
-      color: var(--primary-light);
-      padding: 0.55rem 1.3rem;
-      border-radius: 30px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s;
-      line-height: 1.05;
-      box-shadow:
-        0 0 6px rgba(212, 175, 55, 0.15),
-        0 0 12px rgba(212, 175, 55, 0.08);
-    }
-
-    .btn-oficial:hover {
-      background: var(--primary);
-      color: #000;
-      text-decoration: none;
-      transform: translateY(-2px);
-      box-shadow:
-        0 0 12px rgba(212, 175, 55, 0.5),
-        0 0 25px rgba(212, 175, 55, 0.25);
-    }
-
-    /* ===== NAV ===== */
-    .nav-sticky {
-      background: #000000;
-      border-bottom: 1px solid var(--border-gold);
-      padding: 0.6rem 1rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 1px 10px rgba(212, 175, 55, 0.08);
-    }
-
-    .nav-sticky ul {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.3rem 1.2rem;
-      list-style: none;
-      justify-content: center;
-      max-width: 1100px;
-      margin: 0 auto;
-      font-size: 0.85rem;
-      line-height: 1.2;
-    }
-
-    .nav-sticky a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-weight: 500;
-      padding: 0.2rem 0;
-      border-bottom: 2px solid transparent;
-      transition: all 0.2s;
-      white-space: nowrap;
-      line-height: 1.2;
-    }
-
-    .nav-sticky a:hover {
-      color: var(--primary-light);
-      border-bottom-color: var(--primary);
-      text-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
-    }
-
-    .nav-sticky a.nav-oficial {
-      color: var(--primary);
-      font-weight: 700;
-      text-shadow: 0 0 4px rgba(212, 175, 55, 0.35);
-    }
-
-    .nav-sticky a.nav-oficial:hover {
-      color: var(--primary-light);
-      text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
-    }
-
-    /* ===== LAYOUT ===== */
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 1.2rem;
-    }
-
-    main {
-      padding: 2rem 0 2.5rem;
-      background: #000000;
-    }
-
-    /* ===== SECCIONES ===== */
-    section {
-      background: #000000;
-      border: 1px solid var(--border-gold);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1.5rem 1.8rem;
-      margin-bottom: 1.2rem;
-      transition: border-color 0.3s, box-shadow 0.3s;
-    }
-
-    section:hover {
-      border-color: var(--primary);
-      box-shadow: var(--shadow), 0 0 12px rgba(212, 175, 55, 0.1);
-    }
-
-    section h2 {
-      font-size: 1.35rem;
-      color: var(--primary);
-      margin-bottom: 0.7rem;
-      padding-bottom: 0.4rem;
-      border-bottom: 2px solid var(--accent);
-      display: inline-block;
-      letter-spacing: 0.3px;
-      line-height: 1.2;
-      text-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
-    }
-
-    section h3 {
-      font-size: 1.1rem;
-      color: var(--primary-light);
-      margin: 0.9rem 0 0.4rem;
-      line-height: 1.2;
-      text-shadow: 0 0 4px rgba(212, 175, 55, 0.25);
-    }
-
-    section h4 {
-      font-size: 1rem;
-      color: var(--text-light);
-      margin: 0.8rem 0 0.3rem;
-      line-height: 1.2;
-    }
-
-    p {
-      margin-bottom: 0.5rem;
-      color: var(--text-light);
-      line-height: 1.25;
-    }
-
-    ul, ol {
-      margin: 0.4rem 0 0.6rem 1.5rem;
-      color: var(--text-light);
-      line-height: 1.25;
-    }
-
-    li {
-      margin-bottom: 0.15rem;
-      line-height: 1.25;
-    }
-
-    strong {
-      color: #fff;
-    }
-
-    a {
-      color: var(--primary-light);
-      text-decoration: none;
-      transition: color 0.2s, text-shadow 0.2s;
-    }
-
-    a:hover {
-      color: var(--primary-bright);
-      text-decoration: underline;
-      text-shadow: 0 0 4px rgba(212, 175, 55, 0.4);
-    }
-
-    code {
-      background: #000;
-      color: var(--primary);
-      padding: 0.15rem 0.5rem;
-      border-radius: 4px;
-      font-family: 'Courier New', monospace;
-      font-size: 0.9rem;
-      border: 1px solid var(--border-gold);
-      line-height: 1.2;
-      text-shadow: 0 0 3px rgba(212, 175, 55, 0.3);
-    }
-
-    em {
-      color: var(--text-muted);
-    }
-
-    /* ===== SPECIAL BOXES ===== */
-    .highlight-box {
-      background: rgba(212, 175, 55, 0.05);
-      border-left: 4px solid var(--primary);
-      padding: 0.8rem 1rem;
-      border-radius: 0 8px 8px 0;
-      margin: 0.7rem 0;
-      font-size: 0.95rem;
-      color: var(--text-light);
-      line-height: 1.25;
-      box-shadow: 0 0 8px rgba(212, 175, 55, 0.08);
-    }
-
-    .warning-box {
-      background: rgba(231, 76, 60, 0.05);
-      border-left: 4px solid var(--accent);
-      padding: 0.8rem 1rem;
-      border-radius: 0 8px 8px 0;
-      margin: 0.7rem 0;
-      font-size: 0.95rem;
-      color: var(--text-light);
-      line-height: 1.25;
-      box-shadow: 0 0 8px rgba(231, 76, 60, 0.08);
-    }
-
-    .warning-box strong {
-      color: var(--accent-light);
-    }
-
-    .info-box {
-      background: rgba(39, 174, 96, 0.05);
-      border-left: 4px solid #27ae60;
-      padding: 0.8rem 1rem;
-      border-radius: 0 8px 8px 0;
-      margin: 0.7rem 0;
-      font-size: 0.95rem;
-      color: var(--text-light);
-      line-height: 1.25;
-      box-shadow: 0 0 8px rgba(39, 174, 96, 0.08);
-    }
-
-    /* ===== CATEGORY CARDS ===== */
-    .category-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1rem;
-      margin-top: 0.8rem;
-    }
-
-    .category-card {
-      background: #000000;
-      border-radius: 8px;
-      padding: 1.1rem;
-      border: 1px solid var(--border-gold);
-      transition: all 0.3s;
-      line-height: 1.25;
-    }
-
-    .category-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--primary);
-      box-shadow: 0 0 12px rgba(212, 175, 55, 0.15);
-    }
-
-    .category-card h3 {
-      margin-top: 0;
-      font-size: 1.05rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--primary);
-      border-bottom: 1px solid var(--border-gold);
-      padding-bottom: 0.4rem;
-      margin-bottom: 0.6rem;
-      line-height: 1.2;
-      text-shadow: 0 0 4px rgba(212, 175, 55, 0.3);
-    }
-
-    .category-card .icon {
-      font-size: 1.4rem;
-    }
-
-    .category-card ul {
-      margin-left: 1rem;
-      font-size: 0.92rem;
-      color: var(--text-light);
-      line-height: 1.25;
-    }
-
-    /* ===== TABLES ===== */
-    .table-responsive {
-      overflow-x: auto;
-      margin: 0.8rem 0;
-      border-radius: 8px;
-      border: 1px solid var(--border-gold);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.92rem;
-      background: #000000;
-      line-height: 1.2;
-    }
-
-    th, td {
-      padding: 0.6rem 0.9rem;
-      text-align: left;
-      border-bottom: 1px solid var(--border-gold);
-      color: var(--text-light);
-      line-height: 1.2;
-      background: #000000;
-    }
-
-    th {
-      background: #000000;
-      color: var(--primary);
-      font-weight: 700;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      border-bottom: 2px solid var(--primary);
-      text-shadow: 0 0 4px rgba(212, 175, 55, 0.3);
-    }
-
-    tr {
-      background: #000000;
-    }
-
-    tr:hover {
-      background: rgba(212, 175, 55, 0.03);
-    }
-
-    /* ===== BUTTONS ===== */
-    .btn {
-      display: inline-block;
-      background: var(--accent);
-      color: #fff;
-      padding: 0.65rem 1.4rem;
-      border-radius: 6px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      text-decoration: none;
-      transition: all 0.25s;
-      border: none;
-      cursor: pointer;
-      margin: 0.3rem 0.3rem 0.3rem 0;
-      line-height: 1.2;
-    }
-
-    .btn:hover {
-      background: var(--accent-light);
-      color: #fff;
-      text-decoration: none;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
-    }
-
-    /* ===== BOTÓN DORADO CON BRILLO SUAVE ===== */
-    .btn-download {
-      background: linear-gradient(
-        110deg,
-        #b8941f 0%,
-        #d4af37 20%,
-        #f4d03f 40%,
-        #ffd966 50%,
-        #f4d03f 60%,
-        #d4af37 80%,
-        #b8941f 100%
-      );
-      background-size: 250% 100%;
-      color: #000;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-weight: 800;
-      border: 1px solid #d4af37;
-      animation: goldShine 5s ease-in-out infinite;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-download:hover {
-      color: #000;
-      transform: translateY(-2px);
-      box-shadow:
-        0 0 12px rgba(212, 175, 55, 0.5),
-        0 0 25px rgba(212, 175, 55, 0.25);
-    }
-
-    /* ===== SCHEDULE ===== */
-    .schedule-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 0.9rem;
-      margin-top: 0.8rem;
-    }
-
-    .schedule-item {
-      background: #000000;
-      border-radius: 8px;
-      padding: 1rem 0.9rem;
-      text-align: center;
-      border: 1px solid var(--border-gold);
-      border-top: 2px solid var(--primary);
-      transition: all 0.3s;
-      line-height: 1.2;
-    }
-
-    .schedule-item:hover {
-      border-top-color: var(--primary-bright);
-      border-color: var(--primary);
-      transform: translateY(-2px);
-      box-shadow: 0 0 10px rgba(212, 175, 55, 0.15);
-    }
-
-    .schedule-item .phase {
-      font-weight: 700;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: var(--primary);
-      margin-bottom: 0.4rem;
-      line-height: 1.2;
-      text-shadow: 0 0 4px rgba(212, 175, 55, 0.3);
-    }
-
-    .schedule-item .date {
-      font-size: 0.98rem;
-      color: #fff;
-      font-weight: 500;
-      line-height: 1.2;
-    }
-
-    /* ===== FLYER ===== */
-    .flyer-block {
-      text-align: center;
-      margin-top: 1.2rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border-gold);
-    }
-
-    .flyer-block img {
-      max-width: 100%;
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow:
-        0 0 12px rgba(212, 175, 55, 0.15),
-        0 8px 30px rgba(0,0,0,0.8);
-      border: 1px solid var(--border-gold);
-      display: block;
-      margin: 0 auto;
-    }
-
-    /* ===== INSTITUTIONAL / EDITORIAL ===== */
-    .institutional-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.2rem;
-      align-items: center;
-      justify-items: center;
-      margin-top: 0.8rem;
-    }
-
-    .logo-box {
-      text-align: center;
-      padding: 1rem;
-      background: #000000;
-      border-radius: 8px;
-      border: 1px solid var(--border-gold);
-      width: 100%;
-      transition: all 0.3s;
-      text-decoration: none;
-      display: block;
-      color: inherit;
-    }
-
-    .logo-box:hover {
-      border-color: var(--primary);
-      transform: translateY(-3px);
-      box-shadow: 0 0 12px rgba(212, 175, 55, 0.15);
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* LOGOS INSTITUCIONALES CON BRILLO SUAVE */
-    .logo-box img {
-      max-width: 180px;
-      width: 100%;
-      height: auto;
-      display: block;
-      margin: 0 auto 0.6rem;
-      animation: logoGlowSoft 5s ease-in-out infinite;
-      transition: transform 0.3s;
-    }
-
-    .logo-box:hover img {
-      transform: scale(1.03);
-    }
-
-    .logo-box .logo-caption {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.3;
-    }
-
-    .logo-box .logo-caption strong {
-      display: block;
-      color: var(--primary);
-      font-size: 0.95rem;
-      margin-bottom: 0.2rem;
-      text-shadow: 0 0 4px rgba(212, 175, 55, 0.3);
-    }
-
-    .logo-box .logo-caption .logo-cta {
-      display: inline-block;
-      margin-top: 0.5rem;
-      color: var(--primary-light);
-      font-size: 0.82rem;
-      font-weight: 600;
-      border-bottom: 1px dashed var(--primary-light);
-      padding-bottom: 1px;
-    }
-
-    .logo-box:hover .logo-caption .logo-cta {
-      color: var(--primary-bright);
-      border-bottom-color: var(--primary-bright);
-      text-shadow: 0 0 4px rgba(212, 175, 55, 0.5);
-    }
-
-    /* ===== SECCIÓN PÁGINA OFICIAL ===== */
-    .official-cta {
-      text-align: center;
-      background: rgba(212, 175, 55, 0.04);
-      border: 1px solid var(--primary);
-      border-radius: 8px;
-      padding: 1.2rem 1rem;
-      margin-top: 1rem;
-      box-shadow: 0 0 10px rgba(212, 175, 55, 0.08);
-    }
-
-    .official-cta p {
-      margin-bottom: 0.8rem;
-      color: var(--text-light);
-      font-size: 0.95rem;
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      background: #000000;
-      color: var(--text-muted);
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      border-top: 1px solid var(--primary);
-      line-height: 1.25;
-      box-shadow: 0 -1px 10px rgba(212, 175, 55, 0.08);
-    }
-
-    footer a {
-      color: var(--primary);
-    }
-
-    footer a:hover {
-      color: var(--primary-bright);
-      text-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
-    }
-
-    footer .footer-logo {
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 0.3rem;
-      color: var(--primary);
-      line-height: 1.2;
-      text-shadow: 0 0 5px rgba(212, 175, 55, 0.35);
-    }
-
-    footer .footer-sub {
-      opacity: 0.7;
-      font-size: 0.85rem;
-      line-height: 1.2;
-    }
-
-    footer .footer-fundacion {
-      margin: 1.2rem auto 1rem;
-      max-width: 260px;
-    }
-
-    /* LOGO FOOTER CON BRILLO SUAVE */
-    footer .footer-fundacion img {
-      width: 130px;
-      height: auto;
-      display: block;
-      margin: 0 auto 0.4rem;
-      animation: logoGlowSoft 5s ease-in-out infinite;
-      transition: transform 0.3s;
-    }
-
-    footer .footer-fundacion a:hover img {
-      transform: scale(1.05);
-    }
-
-    footer .footer-fundacion p {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.3;
-    }
-
-    footer .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem 1.5rem;
-      justify-content: center;
-      margin: 1.2rem 0 0.8rem;
-      font-size: 0.85rem;
-    }
-
-    footer .footer-links a {
-      color: var(--primary);
-      font-weight: 600;
-      transition: color 0.2s, text-shadow 0.2s;
-    }
-
-    footer .footer-links a:hover {
-      color: var(--primary-bright);
-      text-decoration: underline;
-      text-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
-    }
-
-    /* ===== BOTÓN FLOTANTE (BRILLO SUAVE) ===== */
-    .floating-oficial {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 200;
-      background: linear-gradient(
-        110deg,
-        #b8941f 0%,
-        #d4af37 20%,
-        #f4d03f 40%,
-        #ffd966 50%,
-        #f4d03f 60%,
-        #d4af37 80%,
-        #b8941f 100%
-      );
-      background-size: 250% 100%;
-      color: #000;
-      padding: 0.7rem 1.1rem;
-      border-radius: 30px;
-      font-weight: 800;
-      font-size: 0.85rem;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: all 0.3s;
-      line-height: 1.2;
-      border: 1px solid #d4af37;
-      animation: goldShine 5s ease-in-out infinite;
-    }
-
-    .floating-oficial:hover {
-      color: #000;
-      text-decoration: none;
-      transform: translateY(-3px);
-      box-shadow:
-        0 0 12px rgba(212, 175, 55, 0.5),
-        0 0 25px rgba(212, 175, 55, 0.25);
-    }
-
-    /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
-      .header-logo {
-        max-width: 320px;
-      }
-
-      header .theme {
-        font-size: 1.7rem;
-        letter-spacing: 2px;
-      }
-
-      header .theme::before,
-      header .theme::after {
-        font-size: 1.9rem;
-      }
-
-      section {
-        padding: 1.2rem 1rem;
-      }
-
-      .nav-sticky ul {
-        font-size: 0.78rem;
-        gap: 0.2rem 0.8rem;
-      }
-
-      .category-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .schedule-grid {
-        grid-template-columns: 1fr 1fr;
-      }
+      .header-logo { max-width: 320px; }
+      header .theme { font-size: 1.7rem; letter-spacing: 2px; }
+      header .theme::before, header .theme::after { font-size: 1.9rem; }
+      section { padding: 1.2rem 1rem; }
+      .nav-sticky { top: 80px; }
+      .nav-sticky ul { font-size: 0.78rem; gap: 0.2rem 0.8rem; }
+      .category-grid { grid-template-columns: 1fr; }
+      .schedule-grid { grid-template-columns: 1fr 1fr; }
+      #flags-container { gap: 15px; }
+      #flags button { min-width: 60px; padding: 6px; }
+      #flags img { width: 30px; height: 22px; }
+      #flags .flag-label { font-size: 10px; }
     }
-
     @media (max-width: 480px) {
-      body {
-        font-size: 15px;
-      }
-
-      header {
-        padding: 1.8rem 0.8rem 1.5rem;
-      }
-
-      .header-logo {
-        max-width: 260px;
-        margin-bottom: 0.8rem;
-      }
-
-      header .theme {
-        font-size: 1.35rem;
-        letter-spacing: 1.5px;
-      }
-
-      header .theme::before,
-      header .theme::after {
-        display: none;
-      }
-
-      .nav-sticky ul {
-        font-size: 0.72rem;
-      }
-
-      .schedule-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .btn {
-        display: block;
-        text-align: center;
-        margin: 0.4rem 0;
-      }
-
-      .institutional-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .floating-oficial {
-        bottom: 12px;
-        right: 12px;
-        padding: 0.6rem 0.9rem;
-        font-size: 0.75rem;
-      }
+      body { font-size: 15px; }
+      header { padding: 1.8rem 0.8rem 1.5rem; }
+      .header-logo { max-width: 260px; margin-bottom: 0.8rem; }
+      header .theme { font-size: 1.35rem; letter-spacing: 1.5px; }
+      header .theme::before, header .theme::after { display: none; }
+      .nav-sticky { top: 70px; }
+      .nav-sticky ul { font-size: 0.72rem; }
+      .schedule-grid { grid-template-columns: 1fr; }
+      .btn { display: block; text-align: center; margin: 0.4rem 0; }
+      .institutional-grid { grid-template-columns: 1fr; }
+      .floating-oficial { bottom: 12px; right: 12px; padding: 0.6rem 0.9rem; font-size: 0.75rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- ==================== HEADER ==================== -->
+<div id="flags">
+  <div id="flags-container">
+    <button id="flag-es" class="active" onclick="setLanguage('es')">
+      <img src="https://flagcdn.com/w40/es.png" alt="Español">
+      <div class="flag-label">Español</div>
+    </button>
+    <button id="flag-en" onclick="setLanguage('en')">
+      <img src="https://flagcdn.com/w40/gb.png" alt="Inglés">
+      <div class="flag-label">English</div>
+    </button>
+    <button id="flag-fr" onclick="setLanguage('fr')">
+      <img src="https://flagcdn.com/w40/fr.png" alt="Francés">
+      <div class="flag-label">Français</div>
+    </button>
+    <button id="flag-pt" onclick="setLanguage('pt')">
+      <img src="https://flagcdn.com/w40/br.png" alt="Portugués">
+      <div class="flag-label">Português</div>
+    </button>
+  </div>
+</div>
+
 <header>
   <div class="container">
     <img class="header-logo" src="https://i.postimg.cc/gJhXtczy/Whats-App-Image-2025-06-27-at-9-%281%29.jpg" alt="Revista Explorando Arte y Cultura de Latinoamérica">
-    <p class="subtitle">Arte Sin Fronteras – Ediciones Internacionales para Artistas Mayores de Edad</p>
+    <p class="subtitle" data-i18n="header-subtitle1"></p>
     <span class="issn">ISSN digital: 3114-9871</span>
-    <p class="theme">Horizontes que nos unen</p>
-    <p class="subtitle">Convocatoria Internacional N.º 3 · 2026</p>
-    <a class="btn-oficial" href="https://explorandomuseosyartelatinoamericano.netlify.app/" target="_blank" rel="noopener">
-      Visitar la página oficial de la revista
-    </a>
+    <p class="theme" data-i18n="header-theme"></p>
+    <p class="subtitle" data-i18n="header-subtitle2"></p>
+    <a class="btn-oficial" href="https://explorandomuseosyartelatinoamericano.netlify.app/" target="_blank" rel="noopener" data-i18n="btn-oficial"></a>
   </div>
 </header>
 
-<!-- ==================== NAV ==================== -->
 <nav class="nav-sticky">
   <ul>
-    <li><a href="#presentacion">Presentación</a></li>
-    <li><a href="#participantes">Participantes</a></li>
-    <li><a href="#tema">Tema</a></li>
-    <li><a href="#categorias">Categorías</a></li>
-    <li><a href="#bilingue">Requisito bilingüe</a></li>
-    <li><a href="#postular">Cómo postular</a></li>
-    <li><a href="#derechos">Derechos de autor</a></li>
-    <li><a href="#cronograma">Cronograma</a></li>
-    <li><a href="#plantillas">Plantillas</a></li>
-    <li><a href="#institucional">Respaldo</a></li>
-    <li><a class="nav-oficial" href="https://explorandomuseosyartelatinoamericano.netlify.app/" target="_blank" rel="noopener">Revista</a></li>
+    <li><a href="#presentacion" data-i18n="nav-presentacion"></a></li>
+    <li><a href="#participantes" data-i18n="nav-participantes"></a></li>
+    <li><a href="#tema" data-i18n="nav-tema"></a></li>
+    <li><a href="#categorias" data-i18n="nav-categorias"></a></li>
+    <li><a href="#bilingue" data-i18n="nav-bilingue"></a></li>
+    <li><a href="#postular" data-i18n="nav-postular"></a></li>
+    <li><a href="#derechos" data-i18n="nav-derechos"></a></li>
+    <li><a href="#cronograma" data-i18n="nav-cronograma"></a></li>
+    <li><a href="#plantillas" data-i18n="nav-plantillas"></a></li>
+    <li><a href="#institucional" data-i18n="nav-institucional"></a></li>
+    <li><a class="nav-oficial" href="https://explorandomuseosyartelatinoamericano.netlify.app/" target="_blank" rel="noopener" data-i18n="nav-revista"></a></li>
   </ul>
 </nav>
 
-<!-- ==================== MAIN ==================== -->
 <main class="container">
 
-  <!-- PRESENTACIÓN -->
   <section id="presentacion">
-    <h2>1. Presentación</h2>
-    <p>La <strong>Revista Explorando Arte y Cultura de Latinoamérica</strong> abre su <strong>Convocatoria N.º 3 – 2026</strong>, edición internacional dedicada a reconocer, visibilizar y difundir procesos de creación, investigación y expresión vinculados con el arte y la cultura latinoamericana.</p>
-    <p>Bajo el tema <strong>"Horizontes que nos unen"</strong>, la edición explora las conexiones entre personas, territorios, culturas, memorias, generaciones y nuevas formas de creación. Se recibirán propuestas sobre identidad, diversidad cultural, patrimonio, educación artística, creación contemporánea y transformaciones territoriales, así como <strong>propuestas de tema libre</strong> relacionadas con el arte, la cultura o la investigación.</p>
+    <h2 data-i18n="h2-presentacion"></h2>
+    <p data-i18n="p-presentacion1"></p>
+    <p data-i18n="p-presentacion2"></p>
   </section>
 
-  <!-- PARTICIPANTES -->
   <section id="participantes">
-    <h2>2. Participantes</h2>
-    <p>Dirigida a <strong>personas mayores de 18 años</strong>, de Latinoamérica y otros países, sin límite de nacionalidad. Podrán participar artistas (emergentes o con trayectoria), docentes-creadores, investigadores, escritores, fotógrafos, ilustradores, creadores digitales, gestores culturales, estudiantes y egresados de áreas afines.</p>
-    <p>Las obras y trabajos deben ser <strong>originales e inéditos</strong>.</p>
+    <h2 data-i18n="h2-participantes"></h2>
+    <p data-i18n="p-participantes1"></p>
+    <p data-i18n="p-participantes2"></p>
   </section>
 
-  <!-- TEMA -->
   <section id="tema">
-    <h2>3. Eje temático: "Horizontes que nos unen"</h2>
-    <p>Posibilidades temáticas: identidad y diversidad cultural · memoria y territorio · patrimonio · arte y comunidad · arte y educación · tradiciones y contemporaneidad · diálogo intergeneracional · mujeres y creación · juventud y cultura · migración · naturaleza y cultura · transformaciones sociales · nuevas tecnologías · inteligencia artificial y creación · investigación-creación · gestión cultural · arte como encuentro · nuevas tendencias artísticas · experiencias pedagógicas.</p>
-    <p><strong>También se aceptan propuestas de tema libre</strong> con relación pertinente al campo de la revista.</p>
+    <h2 data-i18n="h2-tema"></h2>
+    <p data-i18n="p-tema1"></p>
+    <p data-i18n="p-tema2"></p>
   </section>
 
-  <!-- CATEGORÍAS -->
   <section id="categorias">
-    <h2>4. Categorías</h2>
-    <p>La tercera edición contempla <strong>tres categorías</strong>:</p>
+    <h2 data-i18n="h2-categorias"></h2>
+    <p data-i18n="p-categorias1"></p>
 
     <div class="category-grid">
-      <!-- Artes visuales -->
       <div class="category-card">
-        <h3><span class="icon"> </span> A. Artes visuales</h3>
+        <h3 data-i18n="h3-artes"></h3>
         <ul>
-          <li><strong>Expresiones:</strong> dibujo, pintura, escultura, fotografía, grabado, collage, arte textil, arte conceptual, ilustración, arte digital, técnicas mixtas y otras.</li>
-          <li><strong>Máximo:</strong> 3 obras por participante.</li>
-          <li><strong>Cada obra debe incluir:</strong>
+          <li data-i18n="li-artes-1"></li>
+          <li data-i18n="li-artes-2"></li>
+          <li data-i18n="li-artes-3"></li>
+          <li>
             <ul>
-              <li>Título en español e inglés.</li>
-              <li>Descripción en español e inglés (máx. 150 palabras cada una).</li>
-              <li>Palabras clave en español e inglés (3 a 5 cada una).</li>
-              <li>Ficha técnica: autor, título (ES/EN), año, técnica y materiales, dimensiones y archivo.</li>
-              <li><strong>Formato:</strong> JPG o PNG · <strong>Resolución recomendada:</strong> 300 dpi.</li>
+              <li data-i18n="li-artes-a"></li>
+              <li data-i18n="li-artes-b"></li>
+              <li data-i18n="li-artes-c"></li>
+              <li data-i18n="li-artes-d"></li>
+              <li data-i18n="li-artes-e"></li>
             </ul>
           </li>
         </ul>
       </div>
 
-      <!-- Literatura -->
       <div class="category-card">
-        <h3><span class="icon"> </span> B. Literatura</h3>
+        <h3 data-i18n="h3-literatura"></h3>
         <ul>
-          <li><strong>Géneros:</strong> poesía (libre, visual, experimental, haiku, poema en prosa), cuento, microrrelato, crónica, ensayo literario, prosa poética, entrevista literaria o cultural, texto autobiográfico o reflexivo, y otros afines.</li>
-          <li><strong>Máximo:</strong> 1 obra por participante.</li>
-          <li><strong>La obra debe incluir:</strong>
+          <li data-i18n="li-lit-1"></li>
+          <li data-i18n="li-lit-2"></li>
+          <li data-i18n="li-lit-3"></li>
+          <li>
             <ul>
-              <li>Título en español e inglés.</li>
-              <li>Resumen o sinopsis en español e inglés (máx. 150 palabras cada uno).</li>
-              <li>Palabras clave en español e inglés (3 a 5 cada una).</li>
-              <li><strong>Formato:</strong> DOC o DOCX.</li>
-              <li><strong>Presentación:</strong> carta, márgenes 2,54 cm, interlineado doble, Times New Roman 12, extensión 600 a 1.500 palabras.</li>
-              <li>Referencias (si las hay): APA 7.ª edición.</li>
+              <li data-i18n="li-lit-a"></li>
+              <li data-i18n="li-lit-b"></li>
+              <li data-i18n="li-lit-c"></li>
+              <li data-i18n="li-lit-d"></li>
+              <li data-i18n="li-lit-e"></li>
+              <li data-i18n="li-lit-f"></li>
             </ul>
           </li>
-          <li><em>La obra literaria no necesita traducción al inglés; solo el título, resumen y palabras clave.</em></li>
+          <li><em data-i18n="li-lit-em"></em></li>
         </ul>
       </div>
 
-      <!-- Investigación -->
       <div class="category-card">
-        <h3><span class="icon"> </span> C. Investigación</h3>
+        <h3 data-i18n="h3-investigacion"></h3>
         <ul>
-          <li><strong>Temáticas:</strong> arte, cultura, educación artística, patrimonio, creación artística, investigación-creación, gestión cultural, pedagogía de las artes, estudios culturales, historia del arte, arte y tecnología, nuevas tendencias y áreas afines.</li>
-          <li><strong>Máximo:</strong> 1 trabajo por participante.</li>
-          <li><strong>El documento debe presentarse en DOC o DOCX con:</strong>
+          <li data-i18n="li-inv-1"></li>
+          <li data-i18n="li-inv-2"></li>
+          <li data-i18n="li-inv-3"></li>
+          <li>
             <ul>
-              <li>Título en español (máx. 90 caracteres, Calibri 14, centrado, negrita).</li>
-              <li>Título en inglés (máx. 90 caracteres, Calibri 12, centrado, sin negrita).</li>
-              <li>Resumen en español (máx. 250 palabras: contexto, objetivo, metodología, resultados, conclusiones).</li>
-              <li>Abstract en inglés (traducción del resumen).</li>
-              <li>Palabras clave en español (3 a 5).</li>
-              <li>Keywords en inglés (3 a 5).</li>
-              <li><strong>Extensión:</strong> 2.500 a 5.000 palabras (sin referencias).</li>
-              <li><strong>Referencias:</strong> APA 7.ª edición.</li>
-              <li><strong>Formato general:</strong> Calibri 12 · interlineado sencillo · justificado · carta · márgenes 2,54 cm.</li>
+              <li data-i18n="li-inv-a"></li>
+              <li data-i18n="li-inv-b"></li>
+              <li data-i18n="li-inv-c"></li>
+              <li data-i18n="li-inv-d"></li>
+              <li data-i18n="li-inv-e"></li>
+              <li data-i18n="li-inv-f"></li>
+              <li data-i18n="li-inv-g"></li>
+              <li data-i18n="li-inv-h"></li>
+              <li data-i18n="li-inv-i"></li>
             </ul>
           </li>
-          <li><strong>Estructura sugerida:</strong> 1. Introducción · 2. Objetivos · 3. Metodología · 4. Resultados · 5. Discusión · 6. Conclusiones · 7. Referencias. En investigación-creación se admiten otras estructuras.</li>
+          <li data-i18n="li-inv-4"></li>
         </ul>
-        <div class="highlight-box">
-          <strong>Plantilla obligatoria de investigación:</strong> Los trabajos deben seguir la <a href="#plantillas">plantilla oficial de la revista</a>. Las postulaciones que no la utilicen o no respeten su formato podrán ser descalificadas.
-        </div>
-        <div class="warning-box">
-          <strong>Presentación anónima:</strong> El manuscrito de investigación debe presentarse <strong>sin datos personales del autor</strong> (nombre, correo, ORCID, afiliación). Los datos se envían únicamente en el correo de participación.
-        </div>
+        <div class="highlight-box" data-i18n="hb-investigacion"></div>
+        <div class="warning-box" data-i18n="wb-investigacion"></div>
       </div>
     </div>
   </section>
 
-  <!-- REQUISITO BILINGÜE -->
   <section id="bilingue">
-    <h2>5. Requisito bilingüe</h2>
+    <h2 data-i18n="h2-bilingue"></h2>
     <div class="table-responsive">
       <table>
         <thead>
           <tr>
-            <th>Categoría</th>
-            <th>Elementos obligatorios en español e inglés</th>
+            <th data-i18n="th-categoria"></th>
+            <th data-i18n="th-elementos"></th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Artes visuales</td>
-            <td>Título · descripción · palabras clave</td>
+            <td data-i18n="td-artes"></td>
+            <td data-i18n="td-artes-desc"></td>
           </tr>
           <tr>
-            <td>Literatura</td>
-            <td>Título · resumen o sinopsis · palabras clave</td>
+            <td data-i18n="td-literatura"></td>
+            <td data-i18n="td-literatura-desc"></td>
           </tr>
           <tr>
-            <td>Investigación</td>
-            <td>Título · resumen · palabras clave</td>
+            <td data-i18n="td-investigacion"></td>
+            <td data-i18n="td-investigacion-desc"></td>
           </tr>
         </tbody>
       </table>
     </div>
-    <p>El incumplimiento de este requisito se considera <strong>incumplimiento de los requisitos de participación</strong>.</p>
+    <p data-i18n="p-bilingue"></p>
   </section>
 
-  <!-- CÓMO POSTULAR -->
   <section id="postular">
-    <h2>6. Cómo participar</h2>
-    <div class="warning-box">
-      <strong>No se utilizará formulario de inscripción.</strong> El envío es <strong>exclusivamente por correo electrónico</strong>.
-    </div>
-    <p><strong>Correo:</strong> <a href="mailto:explorandomuseosyartelatino@gmail.com">explorandomuseosyartelatino@gmail.com</a></p>
-    <p><strong>Asunto:</strong> <code>Convocatoria N.º 3 – Nombre completo – País</code></p>
-
-    <h3>El correo debe incluir:</h3>
+    <h2 data-i18n="h2-postular"></h2>
+    <div class="warning-box" data-i18n="wb-postular"></div>
+    <p data-i18n="p-postular-correo"></p>
+    <p data-i18n="p-postular-asunto"></p>
+    <h3 data-i18n="h3-postular"></h3>
     <ol>
-      <li>Nombre completo, país y ciudad.</li>
-      <li>Categoría de participación.</li>
-      <li>Título de la obra o trabajo.</li>
-      <li>Material correspondiente a la categoría.</li>
-      <li>Breve biografía (máx. 120 palabras).</li>
-      <li>Redes sociales o sitio web (opcional).</li>
-      <li><strong>Documento obligatorio de derechos de autor diligenciado y firmado.</strong></li>
+      <li data-i18n="ol-postular-1"></li>
+      <li data-i18n="ol-postular-2"></li>
+      <li data-i18n="ol-postular-3"></li>
+      <li data-i18n="ol-postular-4"></li>
+      <li data-i18n="ol-postular-5"></li>
+      <li data-i18n="ol-postular-6"></li>
+      <li data-i18n="ol-postular-7"></li>
     </ol>
-    <p><em>En investigación, los datos personales van en el correo, no en el manuscrito.</em></p>
+    <p><em data-i18n="p-postular-nota"></em></p>
   </section>
 
-  <!-- DERECHOS DE AUTOR -->
   <section id="derechos">
-    <h2>7. Documento obligatorio de derechos de autor</h2>
-    <p>Todo participante debe <strong>descargar, diligenciar, firmar y adjuntar</strong> el documento de autorización y declaración de derechos. Mediante este documento, el autor:</p>
+    <h2 data-i18n="h2-derechos"></h2>
+    <p data-i18n="p-derechos"></p>
     <ul>
-      <li>Declara que la obra es de su autoría y original.</li>
-      <li>Confirma que cuenta con los derechos necesarios para su publicación.</li>
-      <li>Autoriza la publicación digital y la reproducción editorial.</li>
-      <li>Conserva sus derechos de autor.</li>
-      <li>Acepta que la publicación se realice con los créditos correspondientes.</li>
+      <li data-i18n="li-der-1"></li>
+      <li data-i18n="li-der-2"></li>
+      <li data-i18n="li-der-3"></li>
+      <li data-i18n="li-der-4"></li>
+      <li data-i18n="li-der-5"></li>
     </ul>
-    <div class="warning-box">
-      <strong>Las postulaciones sin este documento firmado no serán consideradas.</strong>
-    </div>
+    <div class="warning-box" data-i18n="wb-derechos"></div>
     <p>
-      <a class="btn btn-download" href="https://docs.google.com/document/d/1aNMc-w5dctZ_4yUDg27wDwgdYYl5VMFzW0_vCAjWAnU/export?format=docx" target="_blank" rel="noopener">
-        Descargar documento de derechos de autor
-      </a>
+      <a class="btn btn-download" href="https://docs.google.com/document/d/1aNMc-w5dctZ_4yUDg27wDwgdYYl5VMFzW0_vCAjWAnU/export?format=docx" target="_blank" rel="noopener" data-i18n="btn-derechos"></a>
     </p>
   </section>
 
-  <!-- ORIGINALIDAD Y RESPONSABILIDAD -->
   <section id="originalidad">
-    <h2>8. Originalidad y responsabilidad</h2>
-    <p>Las obras deben ser originales. El participante es responsable de contar con los derechos del material presentado (imágenes, textos, fragmentos o recursos de terceros). La revista podrá solicitar aclaraciones o documentación adicional.</p>
+    <h2 data-i18n="h2-originalidad"></h2>
+    <p data-i18n="p-originalidad"></p>
   </section>
 
-  <!-- PROCESO DE SELECCIÓN -->
   <section id="seleccion">
-    <h2>9. Proceso de selección</h2>
-    <p>La recepción del material <strong>no implica aceptación automática</strong>. Se realiza una revisión inicial de cumplimiento de requisitos y, posteriormente, un proceso de <strong>selección y curaduría</strong> según pertinencia temática, calidad y cumplimiento de las condiciones. La decisión final corresponde al equipo editorial de la revista.</p>
+    <h2 data-i18n="h2-seleccion"></h2>
+    <p data-i18n="p-seleccion"></p>
   </section>
 
-  <!-- INCUMPLIMIENTO -->
   <section id="incumplimiento">
-    <h2>10. Incumplimiento de requisitos</h2>
-    <p>Serán descalificadas las propuestas que:</p>
+    <h2 data-i18n="h2-incumplimiento"></h2>
+    <p data-i18n="p-incumplimiento"></p>
     <ul>
-      <li>Superen el máximo de 3 obras visuales, 1 literaria o 1 investigación.</li>
-      <li>No respeten los formatos establecidos.</li>
-      <li>No incluyan la información solicitada.</li>
-      <li>No presenten título, descripción, resumen o palabras clave en español e inglés cuando corresponda.</li>
-      <li>No adjunten el documento obligatorio de derechos de autor firmado.</li>
-      <li>Presenten información incompleta o inconsistente.</li>
-      <li>Incumplan las condiciones de originalidad o carezcan de los derechos necesarios para publicar.</li>
+      <li data-i18n="li-inc-1"></li>
+      <li data-i18n="li-inc-2"></li>
+      <li data-i18n="li-inc-3"></li>
+      <li data-i18n="li-inc-4"></li>
+      <li data-i18n="li-inc-5"></li>
+      <li data-i18n="li-inc-6"></li>
+      <li data-i18n="li-inc-7"></li>
     </ul>
-    <div class="warning-box">
-      <strong>Las obras o trabajos que no cumplan con los requisitos no serán publicados y quedarán descalificados para la Tercera Edición – 2026.</strong>
-    </div>
+    <div class="warning-box" data-i18n="wb-incumplimiento"></div>
   </section>
 
-  <!-- CRONOGRAMA -->
   <section id="cronograma">
-    <h2>11. Cronograma</h2>
+    <h2 data-i18n="h2-cronograma"></h2>
     <div class="schedule-grid">
       <div class="schedule-item">
-        <div class="phase">Recepción de obras y trabajos</div>
-        <div class="date">21 de septiembre – 21 de octubre de 2026</div>
+        <div class="phase" data-i18n="phase-recepcion"></div>
+        <div class="date" data-i18n="date-recepcion"></div>
       </div>
       <div class="schedule-item">
-        <div class="phase">Selección y curaduría</div>
-        <div class="date">22 de octubre – 22 de noviembre de 2026</div>
+        <div class="phase" data-i18n="phase-seleccion"></div>
+        <div class="date" data-i18n="date-seleccion"></div>
       </div>
       <div class="schedule-item">
-        <div class="phase">Publicación</div>
-        <div class="date">17 de diciembre de 2026</div>
+        <div class="phase" data-i18n="phase-publicacion"></div>
+        <div class="date" data-i18n="date-publicacion"></div>
       </div>
     </div>
   </section>
 
-  <!-- PUBLICACIÓN -->
   <section id="publicacion">
-    <h2>12. Publicación</h2>
-    <p>Las propuestas seleccionadas harán parte de la <strong>Tercera Edición – 2026</strong> de la Revista Explorando Arte y Cultura de Latinoamérica (ISSN 3114-9871), de carácter digital y difundida por los medios oficiales de la revista y la Fundación Artes Multicap. Cada participante será presentado con los créditos correspondientes. La selección no implica transferencia de derechos de autor.</p>
+    <h2 data-i18n="h2-publicacion"></h2>
+    <p data-i18n="p-publicacion"></p>
     <div class="official-cta">
-      <p>Consulta las ediciones anteriores, las bases editoriales y todo el archivo de la revista en su página oficial.</p>
-      <a class="btn btn-download" href="https://seccionrevistasexplorandoarteycultura.netlify.app/" target="_blank" rel="noopener">
-        Visita y adquiere gratis las ediciones anteriores
-      </a>
+      <p data-i18n="p-official-cta"></p>
+      <a class="btn btn-download" href="https://seccionrevistasexplorandoarteycultura.netlify.app/" target="_blank" rel="noopener" data-i18n="btn-ediciones"></a>
     </div>
   </section>
 
-  <!-- PLANTILLAS Y ENLACES DE DESCARGA -->
   <section id="plantillas">
-    <h2>13. Plantillas y documentos de descarga</h2>
-    <p>A continuación, los enlaces directos a los documentos oficiales de la convocatoria:</p>
-
-    <h3>Plantilla oficial de investigación</h3>
-    <p>Obligatoria para la categoría de Investigación. Incluye portada, resumen bilingüe, estructura y formato Calibri 12.</p>
+    <h2 data-i18n="h2-plantillas"></h2>
+    <p data-i18n="p-plantillas"></p>
+    <h3 data-i18n="h3-plantilla-inv"></h3>
+    <p data-i18n="p-plantilla-inv"></p>
     <p>
-      <a class="btn btn-download" href="https://docs.google.com/document/d/1C53Cm4KoD_mb4et-RoX12cs9ZbG5WB01gn07ljq55Qo/export?format=docx" target="_blank" rel="noopener">
-        Descargar plantilla de investigación (.docx)
-      </a>
+      <a class="btn btn-download" href="https://docs.google.com/document/d/1C53Cm4KoD_mb4et-RoX12cs9ZbG5WB01gn07ljq55Qo/export?format=docx" target="_blank" rel="noopener" data-i18n="btn-plantilla"></a>
     </p>
-
-    <h3>Declaración de autoría y autorización de publicación</h3>
-    <p>Documento obligatorio para todas las categorías. Debe descargarse, diligenciarse, firmarse y adjuntarse al correo de postulación.</p>
+    <h3 data-i18n="h3-declaracion"></h3>
+    <p data-i18n="p-declaracion"></p>
     <p>
-      <a class="btn btn-download" href="https://docs.google.com/document/d/1aNMc-w5dctZ_4yUDg27wDwgdYYl5VMFzW0_vCAjWAnU/export?format=docx" target="_blank" rel="noopener">
-        Descargar declaración de autoría (.docx)
-      </a>
+      <a class="btn btn-download" href="https://docs.google.com/document/d/1aNMc-w5dctZ_4yUDg27wDwgdYYl5VMFzW0_vCAjWAnU/export?format=docx" target="_blank" rel="noopener" data-i18n="btn-declaracion"></a>
     </p>
-
-    <div class="info-box">
-      <strong>Nota:</strong> Si los enlaces de descarga directa no funcionan, puedes abrir los documentos en Google Docs y usar <em>Archivo → Descargar → Microsoft Word (.docx)</em>.
-    </div>
+    <div class="info-box" data-i18n="ib-nota"></div>
   </section>
 
-  <!-- RESPALDO INSTITUCIONAL -->
   <section id="institucional">
-    <h2>14. Respaldo institucional</h2>
-    <p>Esta convocatoria es promovida por la <strong>Fundación Artes Multicap</strong>, entidad sin ánimo de lucro comprometida con la circulación, visibilización y fortalecimiento del arte y la cultura latinoamericana.</p>
-    <p>La Fundación cuenta además con su propio <strong>sello editorial</strong>, desde el cual impulsa publicaciones que amplían el acceso a la creación artística, la investigación y el pensamiento cultural en la región.</p>
+    <h2 data-i18n="h2-institucional"></h2>
+    <p data-i18n="p-institucional1"></p>
+    <p data-i18n="p-institucional2"></p>
 
     <div class="institutional-grid">
-      <!-- Logo Fundación (enlace) -->
-      <a class="logo-box" href="https://fundacion-artes-multicap.netlify.app/" target="_blank" rel="noopener" title="Ir al sitio oficial de la Fundación Artes Multicap">
+      <a class="logo-box" href="https://fundacion-artes-multicap.netlify.app/" target="_blank" rel="noopener">
         <img src="https://i.postimg.cc/fTKhs3vn/480702220-618041787505911-8280549859336367380-n-removebg-preview.png" alt="Fundación Artes Multicap">
         <div class="logo-caption">
-          <strong>Fundación Artes Multicap</strong>
-          Entidad sin ánimo de lucro que promueve la revista y la circulación cultural en Latinoamérica.
-          <span class="logo-cta">Visitar sitio oficial →</span>
+          <strong data-i18n="cap-fundacion-title"></strong>
+          <span data-i18n="cap-fundacion-desc"></span>
+          <span class="logo-cta" data-i18n="cap-fundacion-cta"></span>
         </div>
       </a>
-
-      <!-- Logo Editorial (enlace) -->
-      <a class="logo-box" href="https://editorialartesmulticap.netlify.app/" target="_blank" rel="noopener" title="Ir al sitio oficial de la Editorial Artes Multicap">
-        <img src="https://i.postimg.cc/KjNyqCH5/Chat-GPT-Image-16-sept-2026-12-21-49-p-m-removebg-preview.png" alt="Editorial Fundación Artes Multicap">
+      <a class="logo-box" href="https://editorialartesmulticap.netlify.app/" target="_blank" rel="noopener">
+        <img src="https://i.postimg.cc/KjNyqCH5/Chat-GPT-Image-16-sept-2026-12-21-49-p-m-removebg-preview.png" alt="Editorial Artes Multicap">
         <div class="logo-caption">
-          <strong>Editorial Artes Multicap</strong>
-          Nuevo sello editorial de la Fundación para publicaciones de arte, cultura e investigación.
-          <span class="logo-cta">Visitar sitio oficial →</span>
+          <strong data-i18n="cap-editorial-title"></strong>
+          <span data-i18n="cap-editorial-desc"></span>
+          <span class="logo-cta" data-i18n="cap-editorial-cta"></span>
         </div>
       </a>
     </div>
   </section>
 
-  <!-- INVITACIÓN -->
   <section id="invitacion">
-    <h2>15. Invitación</h2>
-    <p>La <strong>Revista Explorando Arte y Cultura de Latinoamérica</strong> invita a crear, investigar y compartir nuevos diálogos a través del arte y la cultura.</p>
-
+    <h2 data-i18n="h2-invitacion"></h2>
+    <p data-i18n="p-invitacion"></p>
     <div class="flyer-block">
       <img src="https://i.postimg.cc/pVDVk3ZW/Gemini-Generated-Image-s6gd05s6gd05s6gd-(1).jpg" alt="Flayer Convocatoria N.º 3 – Horizontes que nos unen">
     </div>
@@ -1282,35 +458,656 @@
 
 </main>
 
-<!-- ==================== FOOTER ==================== -->
 <footer>
   <div class="container">
-    <div class="footer-logo">Revista Explorando Arte y Cultura de Latinoamérica</div>
-    <p class="footer-sub">Arte Sin Fronteras – Ediciones Internacionales</p>
-    <p class="footer-sub">ISSN digital 3114-9871 · Fundación Artes Multicap · Colombia</p>
-
-      <p>Promovida sin ánimo de lucro</p>
-    </div>
+    <div class="footer-logo" data-i18n="footer-logo"></div>
+    <p class="footer-sub" data-i18n="footer-sub1"></p>
+    <p class="footer-sub" data-i18n="footer-sub2"></p>
+    <p data-i18n="footer-promovida" style="margin-top:0.6rem;"></p>
 
     <div class="footer-links">
-      <a href="https://explorandomuseosyartelatinoamericano.netlify.app/" target="_blank" rel="noopener">Página oficial de la revista</a>
-      <a href="https://fundacion-artes-multicap.netlify.app/" target="_blank" rel="noopener">Fundación Artes Multicap</a>
-      <a href="https://editorialartesmulticap.netlify.app/" target="_blank" rel="noopener">Editorial Artes Multicap</a>
+      <a href="https://explorandomuseosyartelatinoamericano.netlify.app/" target="_blank" rel="noopener" data-i18n="footer-link1"></a>
+      <a href="https://fundacion-artes-multicap.netlify.app/" target="_blank" rel="noopener" data-i18n="footer-link2"></a>
+      <a href="https://editorialartesmulticap.netlify.app/" target="_blank" rel="noopener" data-i18n="footer-link3"></a>
     </div>
 
     <p style="margin-top:0.8rem;">
       <a href="mailto:explorandomuseosyartelatino@gmail.com">explorandomuseosyartelatino@gmail.com</a>
     </p>
-    <p style="margin-top:1rem; font-size:0.8rem; opacity:0.6;">
-      © 2026 Revista Explorando Arte y Cultura de Latinoamérica. Todos los derechos reservados.
-    </p>
+    <p style="margin-top:1rem; font-size:0.8rem; opacity:0.6;" data-i18n="footer-copy"></p>
   </div>
 </footer>
 
-<!-- ==================== BOTÓN FLOTANTE ==================== -->
-<a class="floating-oficial" href="https://explorandomuseosyartelatinoamericano.netlify.app/" target="_blank" rel="noopener" title="Visitar la página oficial de la revista">
-  Página oficial
-</a>
+<a class="floating-oficial" href="https://explorandomuseosyartelatinoamericano.netlify.app/" target="_blank" rel="noopener" data-i18n="floating"></a>
+
+<script>
+const i18n = {
+  es: {
+    'header-subtitle1': 'Arte Sin Fronteras – Ediciones Internacionales para Artistas Mayores de Edad',
+    'header-theme': 'Horizontes que nos unen',
+    'header-subtitle2': 'Convocatoria Internacional N.º 3 · 2026',
+    'btn-oficial': 'Visitar la página oficial de la revista',
+    'nav-presentacion': 'Presentación',
+    'nav-participantes': 'Participantes',
+    'nav-tema': 'Tema',
+    'nav-categorias': 'Categorías',
+    'nav-bilingue': 'Requisito bilingüe',
+    'nav-postular': 'Cómo postular',
+    'nav-derechos': 'Derechos de autor',
+    'nav-cronograma': 'Cronograma',
+    'nav-plantillas': 'Plantillas',
+    'nav-institucional': 'Respaldo',
+    'nav-revista': 'Revista',
+    'h2-presentacion': '1. Presentación',
+    'h2-participantes': '2. Participantes',
+    'h2-tema': '3. Eje temático: "Horizontes que nos unen"',
+    'h2-categorias': '4. Categorías',
+    'h2-bilingue': '5. Requisito bilingüe',
+    'h2-postular': '6. Cómo participar',
+    'h2-derechos': '7. Documento obligatorio de derechos de autor',
+    'h2-originalidad': '8. Originalidad y responsabilidad',
+    'h2-seleccion': '9. Proceso de selección',
+    'h2-incumplimiento': '10. Incumplimiento de requisitos',
+    'h2-cronograma': '11. Cronograma',
+    'h2-publicacion': '12. Publicación',
+    'h2-plantillas': '13. Plantillas y documentos de descarga',
+    'h2-institucional': '14. Respaldo institucional',
+    'h2-invitacion': '15. Invitación',
+    'h3-postular': 'El correo debe incluir:',
+    'h3-plantilla-inv': 'Plantilla oficial de investigación',
+    'h3-declaracion': 'Declaración de autoría y autorización de publicación',
+    'h3-artes': 'A. Artes visuales',
+    'h3-literatura': 'B. Literatura',
+    'h3-investigacion': 'C. Investigación',
+    'th-categoria': 'Categoría',
+    'th-elementos': 'Elementos obligatorios en español e inglés',
+    'td-artes': 'Artes visuales',
+    'td-literatura': 'Literatura',
+    'td-investigacion': 'Investigación',
+    'td-artes-desc': 'Título · descripción · palabras clave',
+    'td-literatura-desc': 'Título · resumen o sinopsis · palabras clave',
+    'td-investigacion-desc': 'Título · resumen · palabras clave',
+    'phase-recepcion': 'Recepción de obras y trabajos',
+    'phase-seleccion': 'Selección y curaduría',
+    'phase-publicacion': 'Publicación',
+    'date-recepcion': '21 de septiembre – 21 de octubre de 2026',
+    'date-seleccion': '22 de octubre – 22 de noviembre de 2026',
+    'date-publicacion': '17 de diciembre de 2026',
+    'btn-derechos': 'Descargar documento de derechos de autor',
+    'btn-plantilla': 'Descargar plantilla de investigación (.docx)',
+    'btn-declaracion': 'Descargar declaración de autoría (.docx)',
+    'btn-ediciones': 'Visita y adquiere gratis las ediciones anteriores',
+    'p-official-cta': 'Consulta las ediciones anteriores, las bases editoriales y todo el archivo de la revista en su página oficial.',
+    'p-presentacion1': 'La Revista Explorando Arte y Cultura de Latinoamérica abre su Convocatoria N.º 3 – 2026, edición internacional dedicada a reconocer, visibilizar y difundir procesos de creación, investigación y expresión vinculados con el arte y la cultura latinoamericana.',
+    'p-presentacion2': 'Bajo el tema "Horizontes que nos unen", la edición explora las conexiones entre personas, territorios, culturas, memorias, generaciones y nuevas formas de creación. Se recibirán propuestas sobre identidad, diversidad cultural, patrimonio, educación artística, creación contemporánea y transformaciones territoriales, así como propuestas de tema libre relacionadas con el arte, la cultura o la investigación.',
+    'p-participantes1': 'Dirigida a personas mayores de 18 años, de Latinoamérica y otros países, sin límite de nacionalidad. Podrán participar artistas (emergentes o con trayectoria), docentes-creadores, investigadores, escritores, fotógrafos, ilustradores, creadores digitales, gestores culturales, estudiantes y egresados de áreas afines.',
+    'p-participantes2': 'Las obras y trabajos deben ser originales e inéditos.',
+    'p-tema1': 'Posibilidades temáticas: identidad y diversidad cultural · memoria y territorio · patrimonio · arte y comunidad · arte y educación · tradiciones y contemporaneidad · diálogo intergeneracional · mujeres y creación · juventud y cultura · migración · naturaleza y cultura · transformaciones sociales · nuevas tecnologías · inteligencia artificial y creación · investigación-creación · gestión cultural · arte como encuentro · nuevas tendencias artísticas · experiencias pedagógicas.',
+    'p-tema2': 'También se aceptan propuestas de tema libre con relación pertinente al campo de la revista.',
+    'p-categorias1': 'La tercera edición contempla tres categorías:',
+    'li-artes-1': 'Expresiones: dibujo, pintura, escultura, fotografía, grabado, collage, arte textil, arte conceptual, ilustración, arte digital, técnicas mixtas y otras.',
+    'li-artes-2': 'Máximo: 3 obras por participante.',
+    'li-artes-3': 'Cada obra debe incluir:',
+    'li-artes-a': 'Título en español e inglés.',
+    'li-artes-b': 'Descripción en español e inglés (máx. 150 palabras cada una).',
+    'li-artes-c': 'Palabras clave en español e inglés (3 a 5 cada una).',
+    'li-artes-d': 'Ficha técnica: autor, título (ES/EN), año, técnica y materiales, dimensiones y archivo.',
+    'li-artes-e': 'Formato: JPG o PNG · Resolución recomendada: 300 dpi.',
+    'li-lit-1': 'Géneros: poesía (libre, visual, experimental, haiku, poema en prosa), cuento, microrrelato, crónica, ensayo literario, prosa poética, entrevista literaria o cultural, texto autobiográfico o reflexivo, y otros afines.',
+    'li-lit-2': 'Máximo: 1 obra por participante.',
+    'li-lit-3': 'La obra debe incluir:',
+    'li-lit-a': 'Título en español e inglés.',
+    'li-lit-b': 'Resumen o sinopsis en español e inglés (máx. 150 palabras cada uno).',
+    'li-lit-c': 'Palabras clave en español e inglés (3 a 5 cada una).',
+    'li-lit-d': 'Formato: DOC o DOCX.',
+    'li-lit-e': 'Presentación: carta, márgenes 2,54 cm, interlineado doble, Times New Roman 12, extensión 600 a 1.500 palabras.',
+    'li-lit-f': 'Referencias (si las hay): APA 7.ª edición.',
+    'li-lit-em': 'La obra literaria no necesita traducción al inglés; solo el título, resumen y palabras clave.',
+    'li-inv-1': 'Temáticas: arte, cultura, educación artística, patrimonio, creación artística, investigación-creación, gestión cultural, pedagogía de las artes, estudios culturales, historia del arte, arte y tecnología, nuevas tendencias y áreas afines.',
+    'li-inv-2': 'Máximo: 1 trabajo por participante.',
+    'li-inv-3': 'El documento debe presentarse en DOC o DOCX con:',
+    'li-inv-a': 'Título en español (máx. 90 caracteres, Calibri 14, centrado, negrita).',
+    'li-inv-b': 'Título en inglés (máx. 90 caracteres, Calibri 12, centrado, sin negrita).',
+    'li-inv-c': 'Resumen en español (máx. 250 palabras: contexto, objetivo, metodología, resultados, conclusiones).',
+    'li-inv-d': 'Abstract en inglés (traducción del resumen).',
+    'li-inv-e': 'Palabras clave en español (3 a 5).',
+    'li-inv-f': 'Keywords en inglés (3 a 5).',
+    'li-inv-g': 'Extensión: 2.500 a 5.000 palabras (sin referencias).',
+    'li-inv-h': 'Referencias: APA 7.ª edición.',
+    'li-inv-i': 'Formato general: Calibri 12 · interlineado sencillo · justificado · carta · márgenes 2,54 cm.',
+    'li-inv-4': 'Estructura sugerida: 1. Introducción · 2. Objetivos · 3. Metodología · 4. Resultados · 5. Discusión · 6. Conclusiones · 7. Referencias. En investigación-creación se admiten otras estructuras.',
+    'hb-investigacion': 'Plantilla obligatoria de investigación: Los trabajos deben seguir la plantilla oficial de la revista. Las postulaciones que no la utilicen o no respeten su formato podrán ser descalificadas.',
+    'wb-investigacion': 'Presentación anónima: El manuscrito de investigación debe presentarse sin datos personales del autor (nombre, correo, ORCID, afiliación). Los datos se envían únicamente en el correo de participación.',
+    'p-bilingue': 'El incumplimiento de este requisito se considera incumplimiento de los requisitos de participación.',
+    'wb-postular': 'No se utilizará formulario de inscripción. El envío es exclusivamente por correo electrónico.',
+    'p-postular-correo': 'Correo: explorandomuseosyartelatino@gmail.com',
+    'p-postular-asunto': 'Asunto: Convocatoria N.º 3 – Nombre completo – País',
+    'ol-postular-1': 'Nombre completo, país y ciudad.',
+    'ol-postular-2': 'Categoría de participación.',
+    'ol-postular-3': 'Título de la obra o trabajo.',
+    'ol-postular-4': 'Material correspondiente a la categoría.',
+    'ol-postular-5': 'Breve biografía (máx. 120 palabras).',
+    'ol-postular-6': 'Redes sociales o sitio web (opcional).',
+    'ol-postular-7': 'Documento obligatorio de derechos de autor diligenciado y firmado.',
+    'p-postular-nota': 'En investigación, los datos personales van en el correo, no en el manuscrito.',
+    'p-derechos': 'Todo participante debe descargar, diligenciar, firmar y adjuntar el documento de autorización y declaración de derechos. Mediante este documento, el autor:',
+    'li-der-1': 'Declara que la obra es de su autoría y original.',
+    'li-der-2': 'Confirma que cuenta con los derechos necesarios para su publicación.',
+    'li-der-3': 'Autoriza la publicación digital y la reproducción editorial.',
+    'li-der-4': 'Conserva sus derechos de autor.',
+    'li-der-5': 'Acepta que la publicación se realice con los créditos correspondientes.',
+    'wb-derechos': 'Las postulaciones sin este documento firmado no serán consideradas.',
+    'p-originalidad': 'Las obras deben ser originales. El participante es responsable de contar con los derechos del material presentado (imágenes, textos, fragmentos o recursos de terceros). La revista podrá solicitar aclaraciones o documentación adicional.',
+    'p-seleccion': 'La recepción del material no implica aceptación automática. Se realiza una revisión inicial de cumplimiento de requisitos y, posteriormente, un proceso de selección y curaduría según pertinencia temática, calidad y cumplimiento de las condiciones. La decisión final corresponde al equipo editorial de la revista.',
+    'p-incumplimiento': 'Serán descalificadas las propuestas que:',
+    'li-inc-1': 'Superen el máximo de 3 obras visuales, 1 literaria o 1 investigación.',
+    'li-inc-2': 'No respeten los formatos establecidos.',
+    'li-inc-3': 'No incluyan la información solicitada.',
+    'li-inc-4': 'No presenten título, descripción, resumen o palabras clave en español e inglés cuando corresponda.',
+    'li-inc-5': 'No adjunten el documento obligatorio de derechos de autor firmado.',
+    'li-inc-6': 'Presenten información incompleta o inconsistente.',
+    'li-inc-7': 'Incumplan las condiciones de originalidad o carezcan de los derechos necesarios para publicar.',
+    'wb-incumplimiento': 'Las obras o trabajos que no cumplan con los requisitos no serán publicados y quedarán descalificados para la Tercera Edición – 2026.',
+    'p-publicacion': 'Las propuestas seleccionadas harán parte de la Tercera Edición – 2026 de la Revista Explorando Arte y Cultura de Latinoamérica (ISSN 3114-9871), de carácter digital y difundida por los medios oficiales de la revista y la Fundación Artes Multicap. Cada participante será presentado con los créditos correspondientes. La selección no implica transferencia de derechos de autor.',
+    'p-plantillas': 'A continuación, los enlaces directos a los documentos oficiales de la convocatoria:',
+    'p-plantilla-inv': 'Obligatoria para la categoría de Investigación. Incluye portada, resumen bilingüe, estructura y formato Calibri 12.',
+    'p-declaracion': 'Documento obligatorio para todas las categorías. Debe descargarse, diligenciarse, firmarse y adjuntarse al correo de postulación.',
+    'ib-nota': 'Nota: Si los enlaces de descarga directa no funcionan, puedes abrir los documentos en Google Docs y usar Archivo → Descargar → Microsoft Word (.docx).',
+    'p-institucional1': 'Esta convocatoria es promovida por la Fundación Artes Multicap, entidad sin ánimo de lucro comprometida con la circulación, visibilización y fortalecimiento del arte y la cultura latinoamericana.',
+    'p-institucional2': 'La Fundación cuenta además con su propio sello editorial, desde el cual impulsa publicaciones que amplían el acceso a la creación artística, la investigación y el pensamiento cultural en la región.',
+    'p-invitacion': 'La Revista Explorando Arte y Cultura de Latinoamérica invita a crear, investigar y compartir nuevos diálogos a través del arte y la cultura.',
+    'footer-logo': 'Revista Explorando Arte y Cultura de Latinoamérica',
+    'footer-sub1': 'Arte Sin Fronteras – Ediciones Internacionales',
+    'footer-sub2': 'ISSN digital 3114-9871 · Fundación Artes Multicap · Colombia',
+    'footer-promovida': 'Promovida sin ánimo de lucro',
+    'footer-link1': 'Página oficial de la revista',
+    'footer-link2': 'Fundación Artes Multicap',
+    'footer-link3': 'Editorial Artes Multicap',
+    'footer-copy': '© 2026 Revista Explorando Arte y Cultura de Latinoamérica. Todos los derechos reservados.',
+    'floating': 'Página oficial',
+    'cap-fundacion-title': 'Fundación Artes Multicap',
+    'cap-fundacion-desc': 'Entidad sin ánimo de lucro que promueve la revista y la circulación cultural en Latinoamérica.',
+    'cap-fundacion-cta': 'Visitar sitio oficial →',
+    'cap-editorial-title': 'Editorial Artes Multicap',
+    'cap-editorial-desc': 'Nuevo sello editorial de la Fundación para publicaciones de arte, cultura e investigación.',
+    'cap-editorial-cta': 'Visitar sitio oficial →'
+  },
+  en: {
+    'header-subtitle1': 'Art Without Borders – International Editions for Adult Artists',
+    'header-theme': 'Horizons that unite us',
+    'header-subtitle2': 'International Call No. 3 · 2026',
+    'btn-oficial': 'Visit the magazine\'s official page',
+    'nav-presentacion': 'Introduction',
+    'nav-participantes': 'Participants',
+    'nav-tema': 'Theme',
+    'nav-categorias': 'Categories',
+    'nav-bilingue': 'Bilingual requirement',
+    'nav-postular': 'How to submit',
+    'nav-derechos': 'Copyright',
+    'nav-cronograma': 'Schedule',
+    'nav-plantillas': 'Templates',
+    'nav-institucional': 'Support',
+    'nav-revista': 'Magazine',
+    'h2-presentacion': '1. Introduction',
+    'h2-participantes': '2. Participants',
+    'h2-tema': '3. Theme: "Horizons that unite us"',
+    'h2-categorias': '4. Categories',
+    'h2-bilingue': '5. Bilingual requirement',
+    'h2-postular': '6. How to submit',
+    'h2-derechos': '7. Mandatory copyright document',
+    'h2-originalidad': '8. Originality and responsibility',
+    'h2-seleccion': '9. Selection process',
+    'h2-incumplimiento': '10. Non-compliance with requirements',
+    'h2-cronograma': '11. Schedule',
+    'h2-publicacion': '12. Publication',
+    'h2-plantillas': '13. Templates and downloadable documents',
+    'h2-institucional': '14. Institutional support',
+    'h2-invitacion': '15. Invitation',
+    'h3-postular': 'The email must include:',
+    'h3-plantilla-inv': 'Official research template',
+    'h3-declaracion': 'Authorship declaration and publication authorization',
+    'h3-artes': 'A. Visual arts',
+    'h3-literatura': 'B. Literature',
+    'h3-investigacion': 'C. Research',
+    'th-categoria': 'Category',
+    'th-elementos': 'Mandatory elements in Spanish and English',
+    'td-artes': 'Visual arts',
+    'td-literatura': 'Literature',
+    'td-investigacion': 'Research',
+    'td-artes-desc': 'Title · description · keywords',
+    'td-literatura-desc': 'Title · abstract or synopsis · keywords',
+    'td-investigacion-desc': 'Title · abstract · keywords',
+    'phase-recepcion': 'Reception of works',
+    'phase-seleccion': 'Selection and curation',
+    'phase-publicacion': 'Publication',
+    'date-recepcion': 'September 21 – October 21, 2026',
+    'date-seleccion': 'October 22 – November 22, 2026',
+    'date-publicacion': 'December 17, 2026',
+    'btn-derechos': 'Download copyright document',
+    'btn-plantilla': 'Download research template (.docx)',
+    'btn-declaracion': 'Download authorship declaration (.docx)',
+    'btn-ediciones': 'Visit and get previous editions for free',
+    'p-official-cta': 'Consult previous editions, editorial guidelines and the entire magazine archive on its official page.',
+    'p-presentacion1': 'The Exploring Latin American Art and Culture Magazine opens its Call No. 3 – 2026, an international edition dedicated to recognizing, showcasing and disseminating creative, research and expressive processes linked to Latin American art and culture.',
+    'p-presentacion2': 'Under the theme "Horizons that unite us", the edition explores the connections between people, territories, cultures, memories, generations and new forms of creation. Proposals on identity, cultural diversity, heritage, artistic education, contemporary creation and territorial transformations are welcome, as well as free-theme proposals related to art, culture or research.',
+    'p-participantes1': 'Addressed to people over 18 years of age, from Latin America and other countries, with no nationality restriction. Emerging and established artists, teacher-creators, researchers, writers, photographers, illustrators, digital creators, cultural managers, students and graduates of related fields may participate.',
+    'p-participantes2': 'Works and submissions must be original and unpublished.',
+    'p-tema1': 'Thematic possibilities: identity and cultural diversity · memory and territory · heritage · art and community · art and education · traditions and contemporaneity · intergenerational dialogue · women and creation · youth and culture · migration · nature and culture · social transformations · new technologies · artificial intelligence and creation · research-creation · cultural management · art as encounter · new artistic trends · pedagogical experiences.',
+    'p-tema2': 'Free-theme proposals with a pertinent relationship to the magazine\'s field are also accepted.',
+    'p-categorias1': 'The third edition includes three categories:',
+    'li-artes-1': 'Expressions: drawing, painting, sculpture, photography, engraving, collage, textile art, conceptual art, illustration, digital art, mixed techniques and others.',
+    'li-artes-2': 'Maximum: 3 works per participant.',
+    'li-artes-3': 'Each work must include:',
+    'li-artes-a': 'Title in Spanish and English.',
+    'li-artes-b': 'Description in Spanish and English (max. 150 words each).',
+    'li-artes-c': 'Keywords in Spanish and English (3 to 5 each).',
+    'li-artes-d': 'Technical sheet: author, title (ES/EN), year, technique and materials, dimensions and file.',
+    'li-artes-e': 'Format: JPG or PNG · Recommended resolution: 300 dpi.',
+    'li-lit-1': 'Genres: poetry (free, visual, experimental, haiku, prose poem), short story, micro-story, chronicle, literary essay, poetic prose, literary or cultural interview, autobiographical or reflective text, and others.',
+    'li-lit-2': 'Maximum: 1 literary work per participant.',
+    'li-lit-3': 'The work must include:',
+    'li-lit-a': 'Title in Spanish and English.',
+    'li-lit-b': 'Abstract or synopsis in Spanish and English (max. 150 words each).',
+    'li-lit-c': 'Keywords in Spanish and English (3 to 5 each).',
+    'li-lit-d': 'Format: DOC or DOCX.',
+    'li-lit-e': 'Presentation: letter size, 2.54 cm margins, double spacing, Times New Roman 12, 600 to 1,500 words.',
+    'li-lit-f': 'References (if any): APA 7th edition.',
+    'li-lit-em': 'The literary work does not need to be translated into English; only the title, abstract and keywords.',
+    'li-inv-1': 'Themes: art, culture, artistic education, heritage, artistic creation, research-creation, cultural management, art pedagogy, cultural studies, art history, art and technology, new trends and related areas.',
+    'li-inv-2': 'Maximum: 1 research paper per participant.',
+    'li-inv-3': 'The document must be submitted in DOC or DOCX with:',
+    'li-inv-a': 'Title in Spanish (max. 90 characters, Calibri 14, centered, bold).',
+    'li-inv-b': 'Title in English (max. 90 characters, Calibri 12, centered, not bold).',
+    'li-inv-c': 'Abstract in Spanish (max. 250 words: context, objective, methodology, results, conclusions).',
+    'li-inv-d': 'Abstract in English (translation of the abstract).',
+    'li-inv-e': 'Keywords in Spanish (3 to 5).',
+    'li-inv-f': 'Keywords in English (3 to 5).',
+    'li-inv-g': 'Length: 2,500 to 5,000 words (excluding references).',
+    'li-inv-h': 'References: APA 7th edition.',
+    'li-inv-i': 'General format: Calibri 12 · single spacing · justified · letter size · 2.54 cm margins.',
+    'li-inv-4': 'Suggested structure: 1. Introduction · 2. Objectives · 3. Methodology · 4. Results · 5. Discussion · 6. Conclusions · 7. References. In research-creation, other structures are permitted.',
+    'hb-investigacion': 'Mandatory research template: Papers must follow the magazine\'s official template. Submissions that do not use it or do not respect its format may be disqualified.',
+    'wb-investigacion': 'Anonymous presentation: The research manuscript must be submitted without the author\'s personal data (name, email, ORCID, affiliation). Data is sent only in the submission email.',
+    'p-bilingue': 'Failure to comply with this requirement is considered non-compliance with the participation requirements.',
+    'wb-postular': 'No registration form will be used. Submission is exclusively by email.',
+    'p-postular-correo': 'Email: explorandomuseosyartelatino@gmail.com',
+    'p-postular-asunto': 'Subject: Call No. 3 – Full name – Country',
+    'ol-postular-1': 'Full name, country and city.',
+    'ol-postular-2': 'Participation category.',
+    'ol-postular-3': 'Title of the work or paper.',
+    'ol-postular-4': 'Material corresponding to the category.',
+    'ol-postular-5': 'Brief biography (max. 120 words).',
+    'ol-postular-6': 'Social media or website (optional).',
+    'ol-postular-7': 'Mandatory copyright document completed and signed.',
+    'p-postular-nota': 'In research, personal data goes in the email, not in the manuscript.',
+    'p-derechos': 'Every participant must download, complete, sign and attach the authorization and declaration of rights document. Through this document, the author:',
+    'li-der-1': 'Declares that the work is their own and original.',
+    'li-der-2': 'Confirms they have the necessary rights for its publication.',
+    'li-der-3': 'Authorizes digital publication and editorial reproduction.',
+    'li-der-4': 'Retains their copyright.',
+    'li-der-5': 'Accepts that the publication be made with the corresponding credits.',
+    'wb-derechos': 'Submissions without this signed document will not be considered.',
+    'p-originalidad': 'Works must be original. The participant is responsible for having the rights to the submitted material (images, texts, fragments or third-party resources). The magazine may request clarifications or additional documentation.',
+    'p-seleccion': 'Receipt of material does not imply automatic acceptance. An initial compliance review is carried out and, subsequently, a selection and curation process based on thematic relevance, quality and compliance with conditions. The final decision corresponds to the magazine\'s editorial team.',
+    'p-incumplimiento': 'The following proposals will be disqualified:',
+    'li-inc-1': 'Those exceeding the maximum of 3 visual works, 1 literary or 1 research paper.',
+    'li-inc-2': 'Those not respecting the established formats.',
+    'li-inc-3': 'Those not including the requested information.',
+    'li-inc-4': 'Those not presenting title, description, abstract or keywords in Spanish and English when applicable.',
+    'li-inc-5': 'Those not attaching the mandatory signed copyright document.',
+    'li-inc-6': 'Those presenting incomplete or inconsistent information.',
+    'li-inc-7': 'Those failing to comply with the originality conditions or lacking the necessary rights to publish.',
+    'wb-incumplimiento': 'Works or papers that do not meet the requirements will not be published and will be disqualified from the Third Edition – 2026.',
+    'p-publicacion': 'Selected proposals will be part of the Third Edition – 2026 of the Exploring Latin American Art and Culture Magazine (ISSN 3114-9871), digital in nature and disseminated through the official media of the magazine and the Artes Multicap Foundation. Each participant will be presented with the corresponding credits. Selection does not imply transfer of copyright.',
+    'p-plantillas': 'Below are the direct links to the official documents of the call:',
+    'p-plantilla-inv': 'Mandatory for the Research category. Includes cover page, bilingual abstract, structure and Calibri 12 format.',
+    'p-declaracion': 'Mandatory document for all categories. It must be downloaded, completed, signed and attached to the submission email.',
+    'ib-nota': 'Note: If direct download links do not work, you can open the documents in Google Docs and use File → Download → Microsoft Word (.docx).',
+    'p-institucional1': 'This call is promoted by the Artes Multicap Foundation, a non-profit organization committed to the circulation, visibility and strengthening of Latin American art and culture.',
+    'p-institucional2': 'The Foundation also has its own publishing imprint, from which it promotes publications that broaden access to artistic creation, research and cultural thought in the region.',
+    'p-invitacion': 'The Exploring Latin American Art and Culture Magazine invites you to create, research and share new dialogues through art and culture.',
+    'footer-logo': 'Exploring Latin American Art and Culture Magazine',
+    'footer-sub1': 'Art Without Borders – International Editions',
+    'footer-sub2': 'Digital ISSN 3114-9871 · Artes Multicap Foundation · Colombia',
+    'footer-promovida': 'Promoted as a non-profit',
+    'footer-link1': 'Magazine\'s official page',
+    'footer-link2': 'Artes Multicap Foundation',
+    'footer-link3': 'Artes Multicap Publishing',
+    'footer-copy': '© 2026 Exploring Latin American Art and Culture Magazine. All rights reserved.',
+    'floating': 'Official page',
+    'cap-fundacion-title': 'Artes Multicap Foundation',
+    'cap-fundacion-desc': 'Non-profit organization that promotes the magazine and cultural circulation in Latin America.',
+    'cap-fundacion-cta': 'Visit official site →',
+    'cap-editorial-title': 'Artes Multicap Publishing',
+    'cap-editorial-desc': 'New publishing imprint of the Foundation for art, culture and research publications.',
+    'cap-editorial-cta': 'Visit official site →'
+  },
+  fr: {
+    'header-subtitle1': 'Art Sans Frontières – Éditions Internationales pour Artistes Majeurs',
+    'header-theme': 'Horizons qui nous unissent',
+    'header-subtitle2': 'Appel International N.º 3 · 2026',
+    'btn-oficial': 'Visiter la page officielle de la revue',
+    'nav-presentacion': 'Présentation',
+    'nav-participantes': 'Participants',
+    'nav-tema': 'Thème',
+    'nav-categorias': 'Catégories',
+    'nav-bilingue': 'Exigence bilingue',
+    'nav-postular': 'Comment participer',
+    'nav-derechos': 'Droits d\'auteur',
+    'nav-cronograma': 'Calendrier',
+    'nav-plantillas': 'Modèles',
+    'nav-institucional': 'Soutien',
+    'nav-revista': 'Revue',
+    'h2-presentacion': '1. Présentation',
+    'h2-participantes': '2. Participants',
+    'h2-tema': '3. Axe thématique : « Horizons qui nous unissent »',
+    'h2-categorias': '4. Catégories',
+    'h2-bilingue': '5. Exigence bilingue',
+    'h2-postular': '6. Comment participer',
+    'h2-derechos': '7. Document obligatoire de droits d\'auteur',
+    'h2-originalidad': '8. Originalité et responsabilité',
+    'h2-seleccion': '9. Processus de sélection',
+    'h2-incumplimiento': '10. Non-respect des exigences',
+    'h2-cronograma': '11. Calendrier',
+    'h2-publicacion': '12. Publication',
+    'h2-plantillas': '13. Modèles et documents téléchargeables',
+    'h2-institucional': '14. Soutien institutionnel',
+    'h2-invitacion': '15. Invitation',
+    'h3-postular': 'Le courriel doit inclure :',
+    'h3-plantilla-inv': 'Modèle officiel de recherche',
+    'h3-declaracion': 'Déclaration d\'auteur et autorisation de publication',
+    'h3-artes': 'A. Arts visuels',
+    'h3-literatura': 'B. Littérature',
+    'h3-investigacion': 'C. Recherche',
+    'th-categoria': 'Catégorie',
+    'th-elementos': 'Éléments obligatoires en espagnol et en anglais',
+    'td-artes': 'Arts visuels',
+    'td-literatura': 'Littérature',
+    'td-investigacion': 'Recherche',
+    'td-artes-desc': 'Titre · description · mots-clés',
+    'td-literatura-desc': 'Titre · résumé ou synopsis · mots-clés',
+    'td-investigacion-desc': 'Titre · résumé · mots-clés',
+    'phase-recepcion': 'Réception des œuvres',
+    'phase-seleccion': 'Sélection et curation',
+    'phase-publicacion': 'Publication',
+    'date-recepcion': '21 septembre – 21 octobre 2026',
+    'date-seleccion': '22 octobre – 22 novembre 2026',
+    'date-publicacion': '17 décembre 2026',
+    'btn-derechos': 'Télécharger le document de droits d\'auteur',
+    'btn-plantilla': 'Télécharger le modèle de recherche (.docx)',
+    'btn-declaracion': 'Télécharger la déclaration d\'auteur (.docx)',
+    'btn-ediciones': 'Visitez et obtenez gratuitement les éditions précédentes',
+    'p-official-cta': 'Consultez les éditions précédentes, les directives éditoriales et toutes les archives de la revue sur sa page officielle.',
+    'p-presentacion1': 'La Revue Explorant l\'Art et la Culture d\'Amérique Latine ouvre son Appel N.º 3 – 2026, édition internationale dédiée à reconnaître, valoriser et diffuser les processus de création, de recherche et d\'expression liés à l\'art et à la culture latino-américaine.',
+    'p-presentacion2': 'Sous le thème « Horizons qui nous unissent », l\'édition explore les connexions entre personnes, territoires, cultures, mémoires, générations et nouvelles formes de création. Les propositions sur l\'identité, la diversité culturelle, le patrimoine, l\'éducation artistique, la création contemporaine et les transformations territoriales sont les bienvenues, ainsi que les propositions à thème libre liées à l\'art, la culture ou la recherche.',
+    'p-participantes1': 'Destiné aux personnes de plus de 18 ans, d\'Amérique latine et d\'autres pays, sans limite de nationalité. Peuvent participer des artistes émergents ou confirmés, des enseignants-créateurs, des chercheurs, des écrivains, des photographes, des illustrateurs, des créateurs numériques, des gestionnaires culturels, des étudiants et des diplômés de domaines connexes.',
+    'p-participantes2': 'Les œuvres et travaux doivent être originaux et inédits.',
+    'p-tema1': 'Possibilités thématiques : identité et diversité culturelle · mémoire et territoire · patrimoine · art et communauté · art et éducation · traditions et contemporanéité · dialogue intergénérationnel · femmes et création · jeunesse et culture · migration · nature et culture · transformations sociales · nouvelles technologies · intelligence artificielle et création · recherche-création · gestion culturelle · art comme rencontre · nouvelles tendances artistiques · expériences pédagogiques.',
+    'p-tema2': 'Les propositions à thème libre ayant un lien pertinent avec le domaine de la revue sont également acceptées.',
+    'p-categorias1': 'La troisième édition comprend trois catégories :',
+    'li-artes-1': 'Expressions : dessin, peinture, sculpture, photographie, gravure, collage, art textile, art conceptuel, illustration, art numérique, techniques mixtes et autres.',
+    'li-artes-2': 'Maximum : 3 œuvres par participant.',
+    'li-artes-3': 'Chaque œuvre doit inclure :',
+    'li-artes-a': 'Titre en espagnol et en anglais.',
+    'li-artes-b': 'Description en espagnol et en anglais (max. 150 mots chacune).',
+    'li-artes-c': 'Mots-clés en espagnol et en anglais (3 à 5 chacun).',
+    'li-artes-d': 'Fiche technique : auteur, titre (ES/EN), année, technique et matériaux, dimensions et fichier.',
+    'li-artes-e': 'Format : JPG ou PNG · Résolution recommandée : 300 dpi.',
+    'li-lit-1': 'Genres : poésie (libre, visuelle, expérimentale, haïku, poème en prose), nouvelle, micro-nouvelle, chronique, essai littéraire, prose poétique, entretien littéraire ou culturel, texte autobiographique ou réflexif, et autres.',
+    'li-lit-2': 'Maximum : 1 œuvre littéraire par participant.',
+    'li-lit-3': 'L\'œuvre doit inclure :',
+    'li-lit-a': 'Titre en espagnol et en anglais.',
+    'li-lit-b': 'Résumé ou synopsis en espagnol et en anglais (max. 150 mots chacun).',
+    'li-lit-c': 'Mots-clés en espagnol et en anglais (3 à 5 chacun).',
+    'li-lit-d': 'Format : DOC ou DOCX.',
+    'li-lit-e': 'Présentation : format lettre, marges 2,54 cm, interligne double, Times New Roman 12, extension 600 à 1 500 mots.',
+    'li-lit-f': 'Références (le cas échéant) : APA 7e édition.',
+    'li-lit-em': 'L\'œuvre littéraire n\'a pas besoin d\'être traduite en anglais ; seuls le titre, le résumé et les mots-clés.',
+    'li-inv-1': 'Thèmes : art, culture, éducation artistique, patrimoine, création artistique, recherche-création, gestion culturelle, pédagogie des arts, études culturelles, histoire de l\'art, art et technologie, nouvelles tendances et domaines connexes.',
+    'li-inv-2': 'Maximum : 1 travail de recherche par participant.',
+    'li-inv-3': 'Le document doit être soumis en DOC ou DOCX avec :',
+    'li-inv-a': 'Titre en espagnol (max. 90 caractères, Calibri 14, centré, gras).',
+    'li-inv-b': 'Titre en anglais (max. 90 caractères, Calibri 12, centré, non gras).',
+    'li-inv-c': 'Résumé en espagnol (max. 250 mots : contexte, objectif, méthodologie, résultats, conclusions).',
+    'li-inv-d': 'Résumé en anglais (traduction du résumé).',
+    'li-inv-e': 'Mots-clés en espagnol (3 à 5).',
+    'li-inv-f': 'Mots-clés en anglais (3 à 5).',
+    'li-inv-g': 'Longueur : 2 500 à 5 000 mots (hors références).',
+    'li-inv-h': 'Références : APA 7e édition.',
+    'li-inv-i': 'Format général : Calibri 12 · interligne simple · justifié · format lettre · marges 2,54 cm.',
+    'li-inv-4': 'Structure suggérée : 1. Introduction · 2. Objectifs · 3. Méthodologie · 4. Résultats · 5. Discussion · 6. Conclusions · 7. Références. En recherche-création, d\'autres structures sont admises.',
+    'hb-investigacion': 'Modèle obligatoire de recherche : Les travaux doivent suivre le modèle officiel de la revue. Les candidatures qui ne l\'utilisent pas ou ne respectent pas son format pourront être disqualifiées.',
+    'wb-investigacion': 'Présentation anonyme : Le manuscrit de recherche doit être présenté sans les données personnelles de l\'auteur (nom, courriel, ORCID, affiliation). Les données sont envoyées uniquement dans le courriel de participation.',
+    'p-bilingue': 'Le non-respect de cette exigence est considéré comme un non-respect des conditions de participation.',
+    'wb-postular': 'Aucun formulaire d\'inscription ne sera utilisé. L\'envoi se fait exclusivement par courriel.',
+    'p-postular-correo': 'Courriel : explorandomuseosyartelatino@gmail.com',
+    'p-postular-asunto': 'Objet : Appel N.º 3 – Nom complet – Pays',
+    'ol-postular-1': 'Nom complet, pays et ville.',
+    'ol-postular-2': 'Catégorie de participation.',
+    'ol-postular-3': 'Titre de l\'œuvre ou du travail.',
+    'ol-postular-4': 'Matériel correspondant à la catégorie.',
+    'ol-postular-5': 'Brève biographie (max. 120 mots).',
+    'ol-postular-6': 'Réseaux sociaux ou site web (facultatif).',
+    'ol-postular-7': 'Document obligatoire de droits d\'auteur dûment rempli et signé.',
+    'p-postular-nota': 'En recherche, les données personnelles vont dans le courriel, pas dans le manuscrit.',
+    'p-derechos': 'Chaque participant doit télécharger, remplir, signer et joindre le document d\'autorisation et de déclaration de droits. Par ce document, l\'auteur :',
+    'li-der-1': 'Déclare que l\'œuvre est de sa propre création et originale.',
+    'li-der-2': 'Confirme qu\'il dispose des droits nécessaires à sa publication.',
+    'li-der-3': 'Autorise la publication numérique et la reproduction éditoriale.',
+    'li-der-4': 'Conserve ses droits d\'auteur.',
+    'li-der-5': 'Accepte que la publication soit réalisée avec les crédits correspondants.',
+    'wb-derechos': 'Les candidatures sans ce document signé ne seront pas prises en compte.',
+    'p-originalidad': 'Les œuvres doivent être originales. Le participant est responsable de disposer des droits sur le matériel présenté (images, textes, fragments ou ressources tierces). La revue pourra demander des clarifications ou des documents supplémentaires.',
+    'p-seleccion': 'La réception du matériel n\'implique pas une acceptation automatique. Une vérification initiale de conformité est effectuée puis un processus de sélection et de curation basé sur la pertinence thématique, la qualité et le respect des conditions. La décision finale appartient à l\'équipe éditoriale de la revue.',
+    'p-incumplimiento': 'Seront disqualifiées les propositions qui :',
+    'li-inc-1': 'Dépassent le maximum de 3 œuvres visuelles, 1 œuvre littéraire ou 1 recherche.',
+    'li-inc-2': 'Ne respectent pas les formats établis.',
+    'li-inc-3': 'N\'incluent pas les informations demandées.',
+    'li-inc-4': 'Ne présentent pas le titre, la description, le résumé ou les mots-clés en espagnol et en anglais lorsque cela s\'applique.',
+    'li-inc-5': 'N\'attachent pas le document obligatoire de droits d\'auteur signé.',
+    'li-inc-6': 'Présentent des informations incomplètes ou incohérentes.',
+    'li-inc-7': 'Ne respectent pas les conditions d\'originalité ou ne disposent pas des droits nécessaires pour publier.',
+    'wb-incumplimiento': 'Les œuvres ou travaux qui ne répondent pas aux exigences ne seront pas publiés et seront disqualifiés de la Troisième Édition – 2026.',
+    'p-publicacion': 'Les propositions sélectionnées feront partie de la Troisième Édition – 2026 de la Revue Explorant l\'Art et la Culture d\'Amérique Latine (ISSN 3114-9871), de nature numérique et diffusée par les médias officiels de la revue et de la Fondation Artes Multicap. Chaque participant sera présenté avec les crédits correspondants. La sélection n\'implique pas de transfert de droits d\'auteur.',
+    'p-plantillas': 'Voici les liens directs vers les documents officiels de l\'appel :',
+    'p-plantilla-inv': 'Obligatoire pour la catégorie Recherche. Comprend une page de couverture, un résumé bilingue, une structure et un format Calibri 12.',
+    'p-declaracion': 'Document obligatoire pour toutes les catégories. Il doit être téléchargé, rempli, signé et joint au courriel de candidature.',
+    'ib-nota': 'Remarque : Si les liens de téléchargement direct ne fonctionnent pas, vous pouvez ouvrir les documents dans Google Docs et utiliser Fichier → Télécharger → Microsoft Word (.docx).',
+    'p-institucional1': 'Cet appel est promu par la Fondation Artes Multicap, organisation à but non lucratif engagée dans la circulation, la visibilité et le renforcement de l\'art et de la culture latino-américaine.',
+    'p-institucional2': 'La Fondation dispose également de son propre label éditorial, à partir duquel elle promeut des publications qui élargissent l\'accès à la création artistique, à la recherche et à la pensée culturelle dans la région.',
+    'p-invitacion': 'La Revue Explorant l\'Art et la Culture d\'Amérique Latine invite à créer, rechercher et partager de nouveaux dialogues à travers l\'art et la culture.',
+    'footer-logo': 'Revue Explorant l\'Art et la Culture d\'Amérique Latine',
+    'footer-sub1': 'Art Sans Frontières – Éditions Internationales',
+    'footer-sub2': 'ISSN numérique 3114-9871 · Fondation Artes Multicap · Colombie',
+    'footer-promovida': 'Promue à but non lucratif',
+    'footer-link1': 'Page officielle de la revue',
+    'footer-link2': 'Fondation Artes Multicap',
+    'footer-link3': 'Éditions Artes Multicap',
+    'footer-copy': '© 2026 Revue Explorant l\'Art et la Culture d\'Amérique Latine. Tous droits réservés.',
+    'floating': 'Page officielle',
+    'cap-fundacion-title': 'Fondation Artes Multicap',
+    'cap-fundacion-desc': 'Organisation à but non lucratif qui promeut la revue et la circulation culturelle en Amérique latine.',
+    'cap-fundacion-cta': 'Visiter le site officiel →',
+    'cap-editorial-title': 'Éditions Artes Multicap',
+    'cap-editorial-desc': 'Nouveau label éditorial de la Fondation pour les publications d\'art, de culture et de recherche.',
+    'cap-editorial-cta': 'Visiter le site officiel →'
+  },
+  pt: {
+    'header-subtitle1': 'Arte Sem Fronteiras – Edições Internacionais para Artistas Maiores de Idade',
+    'header-theme': 'Horizontes que nos unem',
+    'header-subtitle2': 'Chamada Internacional N.º 3 · 2026',
+    'btn-oficial': 'Visitar a página oficial da revista',
+    'nav-presentacion': 'Apresentação',
+    'nav-participantes': 'Participantes',
+    'nav-tema': 'Tema',
+    'nav-categorias': 'Categorias',
+    'nav-bilingue': 'Requisito bilíngue',
+    'nav-postular': 'Como participar',
+    'nav-derechos': 'Direitos autorais',
+    'nav-cronograma': 'Cronograma',
+    'nav-plantillas': 'Modelos',
+    'nav-institucional': 'Apoio',
+    'nav-revista': 'Revista',
+    'h2-presentacion': '1. Apresentação',
+    'h2-participantes': '2. Participantes',
+    'h2-tema': '3. Eixo temático: "Horizontes que nos unem"',
+    'h2-categorias': '4. Categorias',
+    'h2-bilingue': '5. Requisito bilíngue',
+    'h2-postular': '6. Como participar',
+    'h2-derechos': '7. Documento obrigatório de direitos autorais',
+    'h2-originalidad': '8. Originalidade e responsabilidade',
+    'h2-seleccion': '9. Processo de seleção',
+    'h2-incumplimiento': '10. Descumprimento dos requisitos',
+    'h2-cronograma': '11. Cronograma',
+    'h2-publicacion': '12. Publicação',
+    'h2-plantillas': '13. Modelos e documentos para download',
+    'h2-institucional': '14. Apoio institucional',
+    'h2-invitacion': '15. Convite',
+    'h3-postular': 'O e-mail deve incluir:',
+    'h3-plantilla-inv': 'Modelo oficial de pesquisa',
+    'h3-declaracion': 'Declaração de autoria e autorização de publicação',
+    'h3-artes': 'A. Artes visuais',
+    'h3-literatura': 'B. Literatura',
+    'h3-investigacion': 'C. Pesquisa',
+    'th-categoria': 'Categoria',
+    'th-elementos': 'Elementos obrigatórios em espanhol e inglês',
+    'td-artes': 'Artes visuais',
+    'td-literatura': 'Literatura',
+    'td-investigacion': 'Pesquisa',
+    'td-artes-desc': 'Título · descrição · palavras-chave',
+    'td-literatura-desc': 'Título · resumo ou sinopse · palavras-chave',
+    'td-investigacion-desc': 'Título · resumo · palavras-chave',
+    'phase-recepcion': 'Recebimento de obras',
+    'phase-seleccion': 'Seleção e curadoria',
+    'phase-publicacion': 'Publicação',
+    'date-recepcion': '21 de setembro – 21 de outubro de 2026',
+    'date-seleccion': '22 de outubro – 22 de novembro de 2026',
+    'date-publicacion': '17 de dezembro de 2026',
+    'btn-derechos': 'Baixar documento de direitos autorais',
+    'btn-plantilla': 'Baixar modelo de pesquisa (.docx)',
+    'btn-declaracion': 'Baixar declaração de autoria (.docx)',
+    'btn-ediciones': 'Visite e obtenha gratuitamente as edições anteriores',
+    'p-official-cta': 'Consulte as edições anteriores, as diretrizes editoriais e todo o arquivo da revista em sua página oficial.',
+    'p-presentacion1': 'A Revista Explorando Arte e Cultura da América Latina abre sua Chamada N.º 3 – 2026, edição internacional dedicada a reconhecer, visibilizar e difundir processos de criação, pesquisa e expressão vinculados à arte e à cultura latino-americana.',
+    'p-presentacion2': 'Sob o tema "Horizontes que nos unem", a edição explora as conexões entre pessoas, territórios, culturas, memórias, gerações e novas formas de criação. Serão recebidas propostas sobre identidade, diversidade cultural, patrimônio, educação artística, criação contemporânea e transformações territoriais, bem como propostas de tema livre relacionadas à arte, à cultura ou à pesquisa.',
+    'p-participantes1': 'Destinada a pessoas maiores de 18 anos, da América Latina e de outros países, sem limite de nacionalidade. Poderão participar artistas (emergentes ou com trajetória), docentes-criadores, pesquisadores, escritores, fotógrafos, ilustradores, criadores digitais, gestores culturais, estudantes e egressos de áreas afins.',
+    'p-participantes2': 'As obras e trabalhos devem ser originais e inéditos.',
+    'p-tema1': 'Possibilidades temáticas: identidade e diversidade cultural · memória e território · patrimônio · arte e comunidade · arte e educação · tradições e contemporaneidade · diálogo intergeracional · mulheres e criação · juventude e cultura · migração · natureza e cultura · transformações sociais · novas tecnologias · inteligência artificial e criação · pesquisa-criação · gestão cultural · arte como encontro · novas tendências artísticas · experiências pedagógicas.',
+    'p-tema2': 'Também são aceitas propostas de tema livre com relação pertinente ao campo da revista.',
+    'p-categorias1': 'A terceira edição contempla três categorias:',
+    'li-artes-1': 'Expressões: desenho, pintura, escultura, fotografia, gravura, colagem, arte têxtil, arte conceitual, ilustração, arte digital, técnicas mistas e outras.',
+    'li-artes-2': 'Máximo: 3 obras por participante.',
+    'li-artes-3': 'Cada obra deve incluir:',
+    'li-artes-a': 'Título em espanhol e inglês.',
+    'li-artes-b': 'Descrição em espanhol e inglês (máx. 150 palavras cada).',
+    'li-artes-c': 'Palavras-chave em espanhol e inglês (3 a 5 cada).',
+    'li-artes-d': 'Ficha técnica: autor, título (ES/EN), ano, técnica e materiais, dimensões e arquivo.',
+    'li-artes-e': 'Formato: JPG ou PNG · Resolução recomendada: 300 dpi.',
+    'li-lit-1': 'Gêneros: poesia (livre, visual, experimental, haicai, poema em prosa), conto, microconto, crônica, ensaio literário, prosa poética, entrevista literária ou cultural, texto autobiográfico ou reflexivo, e outros afins.',
+    'li-lit-2': 'Máximo: 1 obra literária por participante.',
+    'li-lit-3': 'A obra deve incluir:',
+    'li-lit-a': 'Título em espanhol e inglês.',
+    'li-lit-b': 'Resumo ou sinopse em espanhol e inglês (máx. 150 palavras cada).',
+    'li-lit-c': 'Palavras-chave em espanhol e inglês (3 a 5 cada).',
+    'li-lit-d': 'Formato: DOC ou DOCX.',
+    'li-lit-e': 'Apresentação: papel carta, margens de 2,54 cm, espaçamento duplo, Times New Roman 12, extensão de 600 a 1.500 palavras.',
+    'li-lit-f': 'Referências (se houver): APA 7.ª edição.',
+    'li-lit-em': 'A obra literária não precisa ser traduzida para o inglês; apenas o título, o resumo e as palavras-chave.',
+    'li-inv-1': 'Temáticas: arte, cultura, educação artística, patrimônio, criação artística, pesquisa-criação, gestão cultural, pedagogia das artes, estudos culturais, história da arte, arte e tecnologia, novas tendências e áreas afins.',
+    'li-inv-2': 'Máximo: 1 trabalho de pesquisa por participante.',
+    'li-inv-3': 'O documento deve ser apresentado em DOC ou DOCX com:',
+    'li-inv-a': 'Título em espanhol (máx. 90 caracteres, Calibri 14, centralizado, negrito).',
+    'li-inv-b': 'Título em inglês (máx. 90 caracteres, Calibri 12, centralizado, sem negrito).',
+    'li-inv-c': 'Resumo em espanhol (máx. 250 palavras: contexto, objetivo, metodologia, resultados, conclusões).',
+    'li-inv-d': 'Abstract em inglês (tradução do resumo).',
+    'li-inv-e': 'Palavras-chave em espanhol (3 a 5).',
+    'li-inv-f': 'Palavras-chave em inglês (3 a 5).',
+    'li-inv-g': 'Extensão: 2.500 a 5.000 palavras (sem referências).',
+    'li-inv-h': 'Referências: APA 7.ª edição.',
+    'li-inv-i': 'Formato geral: Calibri 12 · espaçamento simples · justificado · carta · margens 2,54 cm.',
+    'li-inv-4': 'Estrutura sugerida: 1. Introdução · 2. Objetivos · 3. Metodologia · 4. Resultados · 5. Discussão · 6. Conclusões · 7. Referências. Em pesquisa-criação, outras estruturas são admitidas.',
+    'hb-investigacion': 'Modelo obrigatório de pesquisa: Os trabalhos devem seguir o modelo oficial da revista. As candidaturas que não o utilizarem ou não respeitarem seu formato poderão ser desclassificadas.',
+    'wb-investigacion': 'Apresentação anônima: O manuscrito de pesquisa deve ser apresentado sem os dados pessoais do autor (nome, e-mail, ORCID, afiliação). Os dados são enviados apenas no e-mail de participação.',
+    'p-bilingue': 'O descumprimento deste requisito é considerado descumprimento dos requisitos de participação.',
+    'wb-postular': 'Não será utilizado formulário de inscrição. O envio é exclusivamente por e-mail.',
+    'p-postular-correo': 'E-mail: explorandomuseosyartelatino@gmail.com',
+    'p-postular-asunto': 'Assunto: Chamada N.º 3 – Nome completo – País',
+    'ol-postular-1': 'Nome completo, país e cidade.',
+    'ol-postular-2': 'Categoria de participação.',
+    'ol-postular-3': 'Título da obra ou trabalho.',
+    'ol-postular-4': 'Material correspondente à categoria.',
+    'ol-postular-5': 'Breve biografia (máx. 120 palavras).',
+    'ol-postular-6': 'Redes sociais ou site (opcional).',
+    'ol-postular-7': 'Documento obrigatório de direitos autorais preenchido e assinado.',
+    'p-postular-nota': 'Em pesquisa, os dados pessoais vão no e-mail, não no manuscrito.',
+    'p-derechos': 'Todo participante deve baixar, preencher, assinar e anexar o documento de autorização e declaração de direitos. Por meio deste documento, o autor:',
+    'li-der-1': 'Declara que a obra é de sua autoria e original.',
+    'li-der-2': 'Confirma que possui os direitos necessários para sua publicação.',
+    'li-der-3': 'Autoriza a publicação digital e a reprodução editorial.',
+    'li-der-4': 'Conserva seus direitos autorais.',
+    'li-der-5': 'Aceita que a publicação seja realizada com os créditos correspondentes.',
+    'wb-derechos': 'As candidaturas sem este documento assinado não serão consideradas.',
+    'p-originalidad': 'As obras devem ser originais. O participante é responsável por ter os direitos do material apresentado (imagens, textos, fragmentos ou recursos de terceiros). A revista poderá solicitar esclarecimentos ou documentação adicional.',
+    'p-seleccion': 'O recebimento do material não implica aceitação automática. É realizada uma revisão inicial de cumprimento de requisitos e, posteriormente, um processo de seleção e curadoria segundo pertinência temática, qualidade e cumprimento das condições. A decisão final corresponde à equipe editorial da revista.',
+    'p-incumplimiento': 'Serão desclassificadas as propostas que:',
+    'li-inc-1': 'Superem o máximo de 3 obras visuais, 1 literária ou 1 pesquisa.',
+    'li-inc-2': 'Não respeitem os formatos estabelecidos.',
+    'li-inc-3': 'Não incluam as informações solicitadas.',
+    'li-inc-4': 'Não apresentem título, descrição, resumo ou palavras-chave em espanhol e inglês quando aplicável.',
+    'li-inc-5': 'Não anexem o documento obrigatório de direitos autorais assinado.',
+    'li-inc-6': 'Apresentem informações incompletas ou inconsistentes.',
+    'li-inc-7': 'Descumpram as condições de originalidade ou careçam dos direitos necessários para publicar.',
+    'wb-incumplimiento': 'As obras ou trabalhos que não cumprirem os requisitos não serão publicados e ficarão desclassificados da Terceira Edição – 2026.',
+    'p-publicacion': 'As propostas selecionadas farão parte da Terceira Edição – 2026 da Revista Explorando Arte e Cultura da América Latina (ISSN 3114-9871), de caráter digital e difundida pelos meios oficiais da revista e da Fundação Artes Multicap. Cada participante será apresentado com os créditos correspondentes. A seleção não implica transferência de direitos autorais.',
+    'p-plantillas': 'A seguir, os links diretos para os documentos oficiais da chamada:',
+    'p-plantilla-inv': 'Obrigatória para a categoria de Pesquisa. Inclui capa, resumo bilíngue, estrutura e formato Calibri 12.',
+    'p-declaracion': 'Documento obrigatório para todas as categorias. Deve ser baixado, preenchido, assinado e anexado ao e-mail de candidatura.',
+    'ib-nota': 'Nota: Se os links de download direto não funcionarem, você pode abrir os documentos no Google Docs e usar Arquivo → Fazer download → Microsoft Word (.docx).',
+    'p-institucional1': 'Esta chamada é promovida pela Fundação Artes Multicap, entidade sem fins lucrativos comprometida com a circulação, visibilização e fortalecimento da arte e da cultura latino-americana.',
+    'p-institucional2': 'A Fundação conta ainda com seu próprio selo editorial, a partir do qual impulsiona publicações que ampliam o acesso à criação artística, à pesquisa e ao pensamento cultural na região.',
+    'p-invitacion': 'A Revista Explorando Arte e Cultura da América Latina convida a criar, pesquisar e compartilhar novos diálogos através da arte e da cultura.',
+    'footer-logo': 'Revista Explorando Arte e Cultura da América Latina',
+    'footer-sub1': 'Arte Sem Fronteiras – Edições Internacionais',
+    'footer-sub2': 'ISSN digital 3114-9871 · Fundação Artes Multicap · Colômbia',
+    'footer-promovida': 'Promovida sem fins lucrativos',
+    'footer-link1': 'Página oficial da revista',
+    'footer-link2': 'Fundação Artes Multicap',
+    'footer-link3': 'Editorial Artes Multicap',
+    'footer-copy': '© 2026 Revista Explorando Arte e Cultura da América Latina. Todos os direitos reservados.',
+    'floating': 'Página oficial',
+    'cap-fundacion-title': 'Fundação Artes Multicap',
+    'cap-fundacion-desc': 'Entidade sem fins lucrativos que promove a revista e a circulação cultural na América Latina.',
+    'cap-fundacion-cta': 'Visitar site oficial →',
+    'cap-editorial-title': 'Editorial Artes Multicap',
+    'cap-editorial-desc': 'Novo selo editorial da Fundação para publicações de arte, cultura e pesquisa.',
+    'cap-editorial-cta': 'Visitar site oficial →'
+  }
+};
+
+function setLanguage(lang) {
+  if (!i18n[lang]) return;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const text = i18n[lang][key];
+    if (text !== undefined) {
+      el.textContent = text;
+    }
+  });
+
+  document.querySelectorAll('#flags button').forEach(btn => btn.classList.remove('active'));
+  const activeFlag = document.getElementById('flag-' + lang);
+  if (activeFlag) activeFlag.classList.add('active');
+
+  document.documentElement.lang = lang;
+  localStorage.setItem('preferred-language', lang);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const saved = localStorage.getItem('preferred-language') || 'es';
+  setLanguage(saved);
+});
+</script>
 
 </body>
 </html>
